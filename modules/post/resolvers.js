@@ -1,24 +1,27 @@
-const Post = require("./models/post");
 const User = require("./models/user");
+const Reservation = require("./models/reservation");
 
 const resolvers = {
   Query: {
-    posts: () => Post.find({}),
-    users: () => User.find({}),
+    userById: (parent, { userId }) => User.findById({ _id: userId }),
   },
 
   Mutation: {
-    addPost: (parent, post) => {
-      const newPost = new Post({ title: post.title, content: post.content });
-      return newPost.save();
-    },
     addUser: (parent, user) => {
       const newUser = new User({
-        name: user.name,
+        login: user.login,
         password: user.password,
+        name: user.name,
+        surname: user.surname,
         age: user.age,
       });
       return newUser.save();
+    },
+    addReservation: (parent, reservation) => {
+      const newReservation = new Reservation({
+        name: reservation.name,
+        userId: reservation.userId,
+      });
     },
   },
 };
