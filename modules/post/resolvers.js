@@ -3,7 +3,10 @@ const Reservation = require("./models/reservation");
 
 const resolvers = {
   Query: {
-    userById: (parent, { userId }) => User.findById({ _id: userId }),
+    users: () => User.find({}),
+    userById: (parent, args) => User.findById({ _id: args.userId }),
+    reservations: () => Reservation.find({}),
+    userReservations: (parent, { userId }) => Reservation.find({userId: userId}),
   },
 
   Mutation: {
@@ -22,6 +25,7 @@ const resolvers = {
         name: reservation.name,
         userId: reservation.userId,
       });
+      return newReservation.save();
     },
   },
 };

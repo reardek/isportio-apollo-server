@@ -17,8 +17,10 @@ const typeDefs = gql`
   }
 
   type Query {
+    users: [User]
     userById(userId: String!): User
     reservations: [Reservation]
+    userReservations(userId: String!): [Reservation] 
   }
 
   type Mutation {
