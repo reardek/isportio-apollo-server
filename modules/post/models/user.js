@@ -6,6 +6,10 @@ const userSchema = new Schema({
   name: String,
   surname: String,
   age: Number,
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 module.exports = model("user", userSchema);
