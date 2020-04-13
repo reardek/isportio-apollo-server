@@ -1,8 +1,14 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, ObjectId } = require("mongoose");
 
 const reservationSchema = Schema({
-  name: String,
-  userId: String,
+  startDateTime: Date,
+  endDateTime: Date,
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  userId: ObjectId,
+  gymId: ObjectId,
 });
 
 module.exports = model("reservation", reservationSchema);

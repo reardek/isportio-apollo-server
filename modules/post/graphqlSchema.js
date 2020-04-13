@@ -5,37 +5,72 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    login: String
+    loginEmail: String
     password: String
-    name: String
-    surname: String
-    age: Int
-    createdAt: Date
+    firstName: String
+    lastName: String
+    birthDate: Date
+    registeredDate: Date
   }
 
   type Reservation {
     _id: ID
-    name: String
+    startDateTime: Date
+    endDateTime: Date
+    createdAt: Date
     userId: ID
+    gymId: ID
+  }
+
+  type Gym {
+    _id: ID
+    gymTypeId: ID
+    description: String
+    ReservationId: ID
+    equipments: [Equipment]
+  }
+
+  type Equipment {
+    _id: ID
+    name: String
+    quantity: Int
   }
 
   type Query {
     users: [User]
     userById(userId: String!): User
     reservations: [Reservation]
-    userReservations(userId: String!): [Reservation] 
+    userReservations(userId: ID!): [Reservation]
+    gyms: [Gym]
+    equipments: [Equipment]
   }
 
   type Mutation {
     addUser(
-      login: String!
+      loginEmail: String!
       password: String!
-      name: String!
-      surname: String
-      age: Int
+      firstName: String!
+      lastName: String!
+      birthDate: Date!
     ): User
 
-    addReservation(name: String!, userId: ID!): Reservation
+    addReservation(
+      startDateTime: Date!
+      endDateTime: Date!
+      userId: ID!
+      gymId: ID!
+    ): Reservation
+
+    addGym(
+      desciption: String
+      reservationId: ID
+      equipments: [EquipmentInput!]
+    ): Gym
+  }
+
+  input EquipmentInput {
+    name: String
+    quantity: Int
   }
 `;
 
