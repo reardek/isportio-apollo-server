@@ -31,7 +31,7 @@ const resolvers = {
   Mutation: {
     addUser: (parent, user) => {
       const newUser = new User({
-        loginEmail: user.login,
+        loginEmail: user.loginEmail,
         password: user.password,
         firstName: user.firstName,
         lastName: user.lastName,
