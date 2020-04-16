@@ -6,8 +6,9 @@ const Trainer = require("./models/trainer");
 const Specialization = require("./models/specialization");
 const SportObject = require("./models/sportObject");
 const Address = require("./models/address");
-const SportObjectOwner = require("./models/sportObjectOwner")
-const Company = require("./models/company")
+const SportObjectOwner = require("./models/sportObjectOwner");
+const Company = require("./models/company");
+const Review = require("./models/review");
 
 const resolvers = {
   Query: {
@@ -23,6 +24,8 @@ const resolvers = {
     sportObjects: () => SportObject.find({}),
     sportObjectOwners: () => SportObjectOwner.find({}),
     addresses: () => Address.find({}),
+    companies: () => Company.find({}),
+    reviews: () => Review.find({}),
   },
 
   Mutation: {
@@ -74,10 +77,26 @@ const resolvers = {
       const newSportObjectOwner = new SportObjectOwner({
         firstName: sportObjectOwner.firstName,
         lastName: sportObjectOwner.lastName,
-        companyId: sportObjectOwner.companyId
+        companyId: sportObjectOwner.companyId,
       });
       return newSportObjectOwner.save();
-    }
+    },
+    addCompany: (parent, company) => {
+      const newCompany = new Company({
+        name: company.name,
+        companyCode: company.companyCode,
+        address: company.address,
+      });
+      return newCompany.save();
+    },
+    addReview: (parent, review) => {
+      const newReview = new Review({
+        description: review.description,
+        starRate: review.starRate,
+        sportObjectId: review.sportObjectId,
+      });
+      return newReview.save();
+    },
   },
 };
 

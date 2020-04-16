@@ -68,6 +68,13 @@ const typeDefs = gql`
     address: Address
   }
 
+  type Review {
+    _id: ID
+    desciption: String
+    starRate: Float
+    sportObjectId: ID
+  }
+
   type Address {
     streetName: String
     buildingNumber: Int
@@ -89,6 +96,7 @@ const typeDefs = gql`
     addresses: [Address]
     sportObjectOwners: [SportObjectOwner]
     companies: [Company]
+    reviews: [Review]
   }
 
   type Mutation {
@@ -136,6 +144,12 @@ const typeDefs = gql`
       companyCode: String
       address: AddressInput
     ): Company
+
+    addReview(
+      desciption: String
+      starRate: Float
+      sportObjectId: ID
+    ) : Review
   }
 
   input EquipmentInput {
