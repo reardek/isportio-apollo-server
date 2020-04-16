@@ -38,15 +38,35 @@ const typeDefs = gql`
   }
 
   type Equipment {
-    _id: ID
     name: String
     quantity: Int
   }
 
   type Specialization {
-    _id: ID
     name: String
     experience: String
+  }
+
+  type SportObject {
+    _id: ID
+    name: String
+    address: Address
+    SportObjectOwnerId: ID
+  }
+
+  type SportObjectOwner {
+    _id: ID
+    firstName: String,
+    lastName: String,
+    companyId: ID
+  }
+
+  type Address {
+    streetName: String
+    buildingNumber: Int
+    flatNumber: Int
+    zipCode: String
+    country: String
   }
 
   type Query {
@@ -58,6 +78,9 @@ const typeDefs = gql`
     equipments: [Equipment]
     trainers: [Trainer]
     specializations: [Specialization]
+    sportObjects: [SportObject]
+    addresses: [Address]
+    SportObjectOwners: [SportObjectOwner]
   }
 
   type Mutation {
@@ -87,6 +110,18 @@ const typeDefs = gql`
       lastName: String
       specializations: [SpecializationInput!]
     ): Trainer
+
+    addSportObject(
+      name: String
+      address: AddressInput
+      SportObjectOwnerId: ID
+    ) : SportObject
+
+    addSportObjectOwner(
+      firstName: String
+      lastName: String
+      companyId: ID
+    ) : SportObjectOwner
   }
 
   input EquipmentInput {
@@ -97,6 +132,14 @@ const typeDefs = gql`
   input SpecializationInput {
     name: String
     experience: String
+  }
+
+  input AddressInput {
+    streetName: String
+    buildingNumber: Int
+    flatNumber: Int
+    zipCode: String
+    country: String
   }
 `;
 

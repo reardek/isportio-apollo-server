@@ -2,8 +2,10 @@ const User = require("./models/user");
 const Reservation = require("./models/reservation");
 const Gym = require("./models/gym");
 const Equipment = require("./models/equipment");
-const Trainer = require("./models/trainer")
-const Specialization = require("./models/specialization")
+const Trainer = require("./models/trainer");
+const Specialization = require("./models/specialization");
+const SportObject = require("./models/sportObject");
+const Address = require("./models/address");
 
 const resolvers = {
   Query: {
@@ -14,7 +16,10 @@ const resolvers = {
       Reservation.find({ userId: args.userId }),
     gyms: () => Gym.find({}),
     equipments: () => Equipment.find({}),
-    trainers: () => Trainer.find({})
+    trainers: () => Trainer.find({}),
+    specializations: () => Specialization.find({}),
+    sportObjects: () => SportObject.find({}),
+    addresses: () => Address.find({}),
   },
 
   Mutation: {
@@ -50,10 +55,18 @@ const resolvers = {
       const newTrainer = new Trainer({
         firstName: trainer.firstName,
         lastName: trainer.lastName,
-        specializations: [...trainer.specialization]
+        specializations: [...trainer.specialization],
       });
       return newTrainer.save();
-    }
+    },
+    addSportObject: (parent, sportObject) => {
+      const newSportObject = new SportObject({
+        name: sportObject.name,
+        address: sportObject.address,
+        sportObjectOwnerId: sportObject.sportObjectOwnerId,
+      });
+      return newSportObject.save();
+    },
   },
 };
 
