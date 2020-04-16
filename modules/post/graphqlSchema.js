@@ -56,8 +56,8 @@ const typeDefs = gql`
 
   type SportObjectOwner {
     _id: ID
-    firstName: String,
-    lastName: String,
+    firstName: String
+    lastName: String
     companyId: ID
   }
 
@@ -123,19 +123,19 @@ const typeDefs = gql`
       name: String
       address: AddressInput
       SportObjectOwnerId: ID
-    ) : SportObject
+    ): SportObject
 
     addSportObjectOwner(
       firstName: String
       lastName: String
       companyId: ID
-    ) : SportObjectOwner
+    ): SportObjectOwner
 
     addCompany(
       name: String
       companyCode: String
       address: AddressInput
-    ) : Company
+    ): Company
   }
 
   input EquipmentInput {

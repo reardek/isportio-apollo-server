@@ -6,6 +6,8 @@ const Trainer = require("./models/trainer");
 const Specialization = require("./models/specialization");
 const SportObject = require("./models/sportObject");
 const Address = require("./models/address");
+const SportObjectOwner = require("./models/sportObjectOwner")
+const Company = require("./models/company")
 
 const resolvers = {
   Query: {
@@ -19,6 +21,7 @@ const resolvers = {
     trainers: () => Trainer.find({}),
     specializations: () => Specialization.find({}),
     sportObjects: () => SportObject.find({}),
+    sportObjectOwners: () => SportObjectOwner.find({}),
     addresses: () => Address.find({}),
   },
 
@@ -67,6 +70,14 @@ const resolvers = {
       });
       return newSportObject.save();
     },
+    addSportObjectOwner: (parent, sportObjectOwner) => {
+      const newSportObjectOwner = new SportObjectOwner({
+        firstName: sportObjectOwner.firstName,
+        lastName: sportObjectOwner.lastName,
+        companyId: sportObjectOwner.companyId
+      });
+      return newSportObjectOwner.save();
+    }
   },
 };
 
