@@ -61,6 +61,13 @@ const typeDefs = gql`
     companyId: ID
   }
 
+  type Company {
+    _id: ID
+    name: String
+    companyCode: String
+    address: Address
+  }
+
   type Address {
     streetName: String
     buildingNumber: Int
@@ -80,7 +87,8 @@ const typeDefs = gql`
     specializations: [Specialization]
     sportObjects: [SportObject]
     addresses: [Address]
-    SportObjectOwners: [SportObjectOwner]
+    sportObjectOwners: [SportObjectOwner]
+    companies: [Company]
   }
 
   type Mutation {
@@ -122,6 +130,12 @@ const typeDefs = gql`
       lastName: String
       companyId: ID
     ) : SportObjectOwner
+
+    addCompany(
+      name: String
+      companyCode: String
+      address: AddressInput
+    ) : Company
   }
 
   input EquipmentInput {
