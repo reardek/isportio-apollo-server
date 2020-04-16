@@ -1,10 +1,5 @@
 const { Schema, model, ObjectId } = require("mongoose");
-//const { equipmentSchema } = require("./equipment");
-
-const equipmentSchema = Schema({
-  name: String,
-  quantity: Number,
-});
+const equipmentSchema = require("./equipment");
 
 const gymSchema = Schema({
   gymTypeId: ObjectId,

@@ -30,10 +30,23 @@ const typeDefs = gql`
     equipments: [Equipment]
   }
 
+  type Trainer {
+    _id: ID
+    firstName: String
+    lastName: String
+    specializations: [Specialization]
+  }
+
   type Equipment {
     _id: ID
     name: String
     quantity: Int
+  }
+
+  type Specialization {
+    _id: ID
+    name: String
+    experience: String
   }
 
   type Query {
@@ -43,6 +56,8 @@ const typeDefs = gql`
     userReservations(userId: ID!): [Reservation]
     gyms: [Gym]
     equipments: [Equipment]
+    trainers: [Trainer]
+    specializations: [Specialization]
   }
 
   type Mutation {
@@ -66,11 +81,22 @@ const typeDefs = gql`
       reservationId: ID
       equipments: [EquipmentInput!]
     ): Gym
+
+    addTrainer(
+      firstName: String
+      lastName: String
+      specializations: [SpecializationInput!]
+    ): Trainer
   }
 
   input EquipmentInput {
     name: String
     quantity: Int
+  }
+
+  input SpecializationInput {
+    name: String
+    experience: String
   }
 `;
 

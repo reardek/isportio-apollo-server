@@ -2,6 +2,8 @@ const User = require("./models/user");
 const Reservation = require("./models/reservation");
 const Gym = require("./models/gym");
 const Equipment = require("./models/equipment");
+const Trainer = require("./models/trainer")
+const Specialization = require("./models/specialization")
 
 const resolvers = {
   Query: {
@@ -12,6 +14,7 @@ const resolvers = {
       Reservation.find({ userId: args.userId }),
     gyms: () => Gym.find({}),
     equipments: () => Equipment.find({}),
+    trainers: () => Trainer.find({})
   },
 
   Mutation: {
@@ -43,6 +46,14 @@ const resolvers = {
       });
       return newGym.save();
     },
+    addTrainer: (parent, trainer) => {
+      const newTrainer = new Trainer({
+        firstName: trainer.firstName,
+        lastName: trainer.lastName,
+        specializations: [...trainer.specialization]
+      });
+      return newTrainer.save();
+    }
   },
 };
 
