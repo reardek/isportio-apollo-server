@@ -1,7 +1,11 @@
 FROM node:lts
 
+WORKDIR /home/node/app
+
 COPY . /home/node/app
 
 EXPOSE 3001
 
-CMD "npm run server"
+RUN npm install -g nodemon && npm install
+
+CMD [ "npm", "run", "server" ]
