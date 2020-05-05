@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const loginCredential = require("./loginCredential");
-const DB_URI = `mongodb+srv://${loginCredential.login}:${loginCredential.password}@isportio-oqbfe.mongodb.net/isportio?retryWrites=true&w=majority`;
+const dotenv = require("dotenv").config();
 
+const DB_URI = `mongodb+srv://${process.env.mongoLogin}:${process.env.mongoPassword}@isportio-oqbfe.mongodb.net/isportio?retryWrites=true&w=majority`;
+console.log(process.env.mongoLogin)
 mongoose.connect(DB_URI, { useNewUrlParser: true });
 mongoose.connection.once("open", () =>
   console.log("Connected to iSportio Database instance")
