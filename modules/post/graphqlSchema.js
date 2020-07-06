@@ -79,6 +79,7 @@ const typeDefs = gql`
     streetName: String
     buildingNumber: Int
     flatNumber: Int
+    city: String
     zipCode: String
     country: String
   }
@@ -166,6 +167,7 @@ const typeDefs = gql`
     streetName: String
     buildingNumber: Int
     flatNumber: Int
+    city: String
     zipCode: String
     country: String
   }
