@@ -165,8 +165,8 @@ const typeDefs = gql`
 
   input AddressInput {
     streetName: String
-    buildingNumber: Int
-    flatNumber: Int
+    buildingNumber: String
+    flatNumber: String
     city: String
     zipCode: String
     country: String

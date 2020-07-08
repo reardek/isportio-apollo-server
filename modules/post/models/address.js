@@ -2,8 +2,8 @@ const { Schema } = require("mongoose");
 
 const addressSchema = new Schema({
   streetName: String,
-  buildingNumber: Number,
-  flatNumber: Number,
+  buildingNumber: String,
+  flatNumber: String,
   city: String,
   zipCode: String,
   country: String,
