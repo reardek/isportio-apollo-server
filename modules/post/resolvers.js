@@ -6,6 +6,7 @@ const Trainer = require("./models/trainer");
 const Specialization = require("./models/specialization");
 const SportObject = require("./models/sportObject");
 const Address = require("./models/address");
+const Country = require("./models/country");
 const SportObjectOwner = require("./models/sportObjectOwner");
 const Company = require("./models/company");
 const Review = require("./models/review");
@@ -24,6 +25,7 @@ const resolvers = {
     sportObjects: () => SportObject.find({}),
     sportObjectOwners: () => SportObjectOwner.find({}),
     addresses: () => Address.find({}),
+    countries: () => Country.find({}),
     companies: () => Company.find({}),
     reviews: () => Review.find({}),
   },

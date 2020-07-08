@@ -81,7 +81,12 @@ const typeDefs = gql`
     flatNumber: Int
     city: String
     zipCode: String
-    country: String
+    country: CountryInput
+  }
+
+  type Country {
+    code: String
+    longName: String
   }
 
   type Query {
@@ -146,11 +151,7 @@ const typeDefs = gql`
       address: AddressInput
     ): Company
 
-    addReview(
-      desciption: String
-      starRate: Float
-      sportObjectId: ID
-    ) : Review
+    addReview(desciption: String, starRate: Float, sportObjectId: ID): Review
   }
 
   input EquipmentInput {
@@ -169,7 +170,12 @@ const typeDefs = gql`
     flatNumber: String
     city: String
     zipCode: String
-    country: String
+    country: CountryInput
+  }
+
+  input CountryInput {
+    code: String
+    longName: String
   }
 `;
 
