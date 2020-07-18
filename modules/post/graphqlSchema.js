@@ -89,7 +89,7 @@ const typeDefs = gql`
     longName: String
   }
 
-  type Citie {
+  type Cities {
     NAZWA: String
   }
 
