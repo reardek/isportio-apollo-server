@@ -89,6 +89,10 @@ const typeDefs = gql`
     longName: String
   }
 
+  type Citie {
+    NAZWA: String
+  }
+
   type Query {
     users: [User]
     userById(userId: String!): User
@@ -103,6 +107,7 @@ const typeDefs = gql`
     sportObjectOwners: [SportObjectOwner]
     companies: [Company]
     reviews: [Review]
+    cities: [Cities]
   }
 
   type Mutation {

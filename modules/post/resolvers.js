@@ -10,6 +10,7 @@ const Country = require("./models/country");
 const SportObjectOwner = require("./models/sportObjectOwner");
 const Company = require("./models/company");
 const Review = require("./models/review");
+const Cities = require("./models/cities");
 
 const resolvers = {
   Query: {
@@ -28,6 +29,7 @@ const resolvers = {
     countries: () => Country.find({}),
     companies: () => Company.find({}),
     reviews: () => Review.find({}),
+    cities: () => Cities.find({}),
   },
 
   Mutation: {
