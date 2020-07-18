@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const loginCredential = require("./loginCredential");
 const dotenv = require("dotenv").config();
 
 const DB_URI = `mongodb+srv://${process.env.mongoLogin}:${process.env.mongoPassword}@isportio-oqbfe.mongodb.net/isportio?retryWrites=true&w=majority`;
