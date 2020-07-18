@@ -26,7 +26,6 @@ const resolvers = {
     sportObjects: () => SportObject.find({}),
     sportObjectOwners: () => SportObjectOwner.find({}),
     addresses: () => Address.find({}),
-    countries: () => Country.find({}),
     companies: () => Company.find({}),
     reviews: () => Review.find({}),
     cities: () => Cities.find({}),

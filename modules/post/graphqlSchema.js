@@ -81,7 +81,7 @@ const typeDefs = gql`
     flatNumber: Int
     city: String
     zipCode: String
-    country: CountryInput
+    country: Country
   }
 
   type Country {
