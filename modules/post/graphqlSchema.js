@@ -107,7 +107,7 @@ const typeDefs = gql`
     sportObjectOwners: [SportObjectOwner]
     companies: [Company]
     reviews: [Review]
-    cities: [Cities]
+    cities(filter: String, skip: Int, first: Int): [Cities]
   }
 
   type Mutation {

@@ -11,6 +11,7 @@ const SportObjectOwner = require("./models/sportObjectOwner");
 const Company = require("./models/company");
 const Review = require("./models/review");
 const Cities = require("./models/cities");
+const { query } = require("express");
 
 const resolvers = {
   Query: {
@@ -28,7 +29,17 @@ const resolvers = {
     addresses: () => Address.find({}),
     companies: () => Company.find({}),
     reviews: () => Review.find({}),
-    cities: () => Cities.find({}),
+    cities: async ( parent, {filter, first, skip} ) => {
+      let query = filter ? {NAZWA: {$regex: `${filter}`, $options: 'i'}} : {}
+      const cursor = Cities.find(query);
+      if (first) {
+        cursor.limit(first);
+      }
+      if (skip) {
+        cursor.skip(skip);
+      }
+      return cursor;
+    },
   },
 
   Mutation: {
