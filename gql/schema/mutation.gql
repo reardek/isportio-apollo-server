@@ -1,0 +1,49 @@
+type Mutation {
+    addUser(
+      loginEmail: String!
+      password: String!
+      firstName: String!
+      lastName: String!
+      birthDate: Date!
+    ): User
+
+    addReservation(
+      startDateTime: Date!
+      endDateTime: Date!
+      userId: ID!
+      gymId: ID!
+    ): Reservation
+
+    addGym(
+      desciption: String
+      reservationId: ID
+      equipments: [EquipmentInput!]
+    ): Gym
+
+    addTrainer(
+      firstName: String
+      lastName: String
+      specializations: [SpecializationInput!]
+    ): Trainer
+
+    addSportObject(
+      name: String
+      address: AddressInput
+      gyms: [GymInput]
+      SportObjectOwnerId: ID
+    ): SportObject
+
+    addSportObjectOwner(
+      firstName: String
+      lastName: String
+      companyId: ID
+    ): SportObjectOwner
+
+    addCompany(
+      name: String
+      companyCode: String
+      address: AddressInput
+    ): Company
+
+    addReview(desciption: String, starRate: Float, sportObjectId: ID): Review
+  }

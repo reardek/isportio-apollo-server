@@ -1,0 +1,31 @@
+input EquipmentInput {
+    name: String
+    quantity: Int
+  }
+
+  input SpecializationInput {
+    name: String
+    experience: String
+  }
+
+  input AddressInput {
+    streetName: String
+    buildingNumber: String
+    flatNumber: String
+    city: String
+    zipCode: String
+    country: CountryInput
+  }
+
+  input CountryInput {
+    code: String
+    longName: String
+  }
+
+  input GymInput {
+    gymTypeId: ID
+    description: String
+    reservationId: ID
+    sportObjectId: ID
+    equipments: [EquipmentInput]
+  }

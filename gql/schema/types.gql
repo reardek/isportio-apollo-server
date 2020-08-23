@@ -1,0 +1,92 @@
+type User {
+    _id: ID
+    loginEmail: String
+    password: String
+    firstName: String
+    lastName: String
+    birthDate: Date
+    registeredDate: Date
+  }
+
+  type Reservation {
+    _id: ID
+    startDateTime: Date
+    endDateTime: Date
+    createdAt: Date
+    userId: ID
+    gymId: ID
+  }
+
+  type Gym {
+    _id: ID
+    gymTypeId: ID
+    description: String
+    ReservationId: ID
+    equipments: [Equipment]
+  }
+
+  type Trainer {
+    _id: ID
+    firstName: String
+    lastName: String
+    specializations: [Specialization]
+  }
+
+  type Equipment {
+    name: String
+    quantity: Int
+  }
+
+  type Specialization {
+    name: String
+    experience: String
+  }
+
+  type SportObject {
+    _id: ID
+    name: String
+    address: Address
+    gyms: Gym
+    SportObjectOwnerId: ID
+  }
+
+  type SportObjectOwner {
+    _id: ID
+    firstName: String
+    lastName: String
+    companyId: ID
+  }
+
+  type Company {
+    _id: ID
+    name: String
+    companyCode: String
+    address: Address
+  }
+
+  type Review {
+    _id: ID
+    desciption: String
+    starRate: Float
+    sportObjectId: ID
+  }
+
+  type Address {
+    streetName: String
+    buildingNumber: Int
+    flatNumber: Int
+    city: String
+    zipCode: String
+    country: Country
+  }
+
+  type Country {
+    code: String
+    longName: String
+  }
+
+  type Cities {
+    NAZWA: String
+    Gmina: String
+    Wojewodztwo: String
+  }
