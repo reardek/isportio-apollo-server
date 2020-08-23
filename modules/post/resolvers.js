@@ -30,7 +30,7 @@ const resolvers = {
     companies: () => Company.find({}),
     reviews: () => Review.find({}),
     cities: async ( parent, {filter, first, skip} ) => {
-      let query = filter ? {NAZWA: {$regex: `${filter}`, $options: 'i'}} : {}
+      let query = filter ? {NAZWA: {$regex: `^${filter}`, $options: 'i'}} : {}
       const cursor = Cities.find(query);
       if (first) {
         cursor.limit(first);

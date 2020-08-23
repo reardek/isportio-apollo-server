@@ -91,6 +91,8 @@ const typeDefs = gql`
 
   type Cities {
     NAZWA: String
+    Gmina: String
+    Wojewodztwo: String
   }
 
   type Query {
