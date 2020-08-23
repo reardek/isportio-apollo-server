@@ -5,7 +5,9 @@ const gymSchema = Schema({
   gymTypeId: ObjectId,
   description: String,
   reservationId: ObjectId,
+  sportObjectId: ObjectId,
   equipments: [equipmentSchema],
 });
 
-module.exports = model("gym", gymSchema);
+exports = model("gym", gymSchema);
+module.exports.gymSchema = gymSchema;

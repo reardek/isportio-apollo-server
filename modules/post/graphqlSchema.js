@@ -51,6 +51,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     address: Address
+    gyms: Gym
     SportObjectOwnerId: ID
   }
 
@@ -143,6 +144,7 @@ const typeDefs = gql`
     addSportObject(
       name: String
       address: AddressInput
+      gyms: [GymInput]
       SportObjectOwnerId: ID
     ): SportObject
 
@@ -183,6 +185,14 @@ const typeDefs = gql`
   input CountryInput {
     code: String
     longName: String
+  }
+
+  input GymInput {
+    gymTypeId: ID
+    description: String
+    reservationId: ID
+    sportObjectId: ID
+    equipments: [EquipmentInput]
   }
 `;
 

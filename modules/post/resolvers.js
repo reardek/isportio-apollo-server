@@ -29,8 +29,10 @@ const resolvers = {
     addresses: () => Address.find({}),
     companies: () => Company.find({}),
     reviews: () => Review.find({}),
-    cities: async ( parent, {filter, first, skip} ) => {
-      let query = filter ? {NAZWA: {$regex: `^${filter}`, $options: 'i'}} : {}
+    cities: async (parent, { filter, first, skip }) => {
+      let query = filter
+        ? { NAZWA: { $regex: `^${filter}`, $options: "i" } }
+        : {};
       const cursor = Cities.find(query);
       if (first) {
         cursor.limit(first);
@@ -84,6 +86,7 @@ const resolvers = {
         name: sportObject.name,
         address: sportObject.address,
         sportObjectOwnerId: sportObject.sportObjectOwnerId,
+        gyms: [...sportObject.gyms],
       });
       return newSportObject.save();
     },
