@@ -14,6 +14,13 @@ type Mutation {
       gymId: ID!
     ): Reservation
 
+    addGym(
+      gymTypeId: ID
+      desciption: String
+      availability: Int
+      equipments: [EquipmentInput!]
+    ): Gym
+
     addGymType(
       name: String
     ): GymType

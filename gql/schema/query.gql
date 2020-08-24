@@ -3,6 +3,7 @@ type Query {
   userById(userId: String!): User
   reservations: [Reservation]
   userReservations(userId: ID!): [Reservation]
+  gyms: [Gym]
   equipments: [Equipment]
   trainers: [Trainer]
   specializations: [Specialization]
