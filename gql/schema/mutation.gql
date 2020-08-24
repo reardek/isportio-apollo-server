@@ -17,6 +17,7 @@ type Mutation {
     addGym(
       gymTypeId: ID
       desciption: String
+      availability: Int
       equipments: [EquipmentInput!]
     ): Gym
 

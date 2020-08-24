@@ -4,7 +4,7 @@ const equipmentSchema = require("./equipment");
 const gymSchema = Schema({
   gymTypeId: ObjectId,
   description: String,
-  reservationId: ObjectId,
+  availability: Number,
   sportObjectId: ObjectId,
   equipments: [equipmentSchema],
 });

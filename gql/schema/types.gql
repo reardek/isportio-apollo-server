@@ -21,6 +21,7 @@ type User {
     _id: ID
     gymTypeId: ID
     description: String
+    availability: Int
     equipments: [Equipment]
   }
 

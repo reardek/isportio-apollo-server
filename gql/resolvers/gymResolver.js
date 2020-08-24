@@ -7,6 +7,7 @@ module.exports = {
       const newGym = new Gym({
         gymTypeId: gym.gymTypeId,
         description: gym.description,
+        availability: gym.availability,
         equipments: [...gym.equipments],
       });
       return newGym.save();
