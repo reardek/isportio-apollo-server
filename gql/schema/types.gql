@@ -21,8 +21,12 @@ type User {
     _id: ID
     gymTypeId: ID
     description: String
-    ReservationId: ID
     equipments: [Equipment]
+  }
+
+  type GymType {
+    _id: ID
+    Name: String
   }
 
   type Trainer {

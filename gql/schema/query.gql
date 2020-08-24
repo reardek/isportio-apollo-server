@@ -13,4 +13,5 @@ type Query {
     companies: [Company]
     reviews: [Review]
     cities(filter: String, skip: Int, first: Int): [Cities]
+    gymTypes: [gymType]
   }

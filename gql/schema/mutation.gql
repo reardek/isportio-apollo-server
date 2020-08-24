@@ -15,10 +15,14 @@ type Mutation {
     ): Reservation
 
     addGym(
+      gymTypeId: ID
       desciption: String
-      reservationId: ID
       equipments: [EquipmentInput!]
     ): Gym
+
+    addGymType(
+      name: String
+    ): GymType
 
     addTrainer(
       firstName: String
