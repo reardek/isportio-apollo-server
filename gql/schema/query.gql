@@ -1,17 +1,17 @@
 type Query {
-    users: [User]
-    userById(userId: String!): User
-    reservations: [Reservation]
-    userReservations(userId: ID!): [Reservation]
-    gyms: [Gym]
-    equipments: [Equipment]
-    trainers: [Trainer]
-    specializations: [Specialization]
-    sportObjects: [SportObject]
-    addresses: [Address]
-    sportObjectOwners: [SportObjectOwner]
-    companies: [Company]
-    reviews: [Review]
-    cities(filter: String, skip: Int, first: Int): [Cities]
-    gymTypes: [gymType]
-  }
+  users: [User]
+  userById(userId: String!): User
+  reservations: [Reservation]
+  userReservations(userId: ID!): [Reservation]
+  gyms: [Gym]
+  equipments: [Equipment]
+  trainers: [Trainer]
+  specializations: [Specialization]
+  sportObjects: [SportObject]
+  addresses: [Address]
+  sportObjectOwners: [SportObjectOwner]
+  companies: [Company]
+  reviews: [Review]
+  cities(filter: String, skip: Int, first: Int): [Cities]
+  gymTypes: [GymType]
+}

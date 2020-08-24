@@ -5,7 +5,7 @@ module.exports = {
   Mutation: {
     addGymType: (parent, gymType) => {
       const newGymType = new Gym({
-        name: gymType.name
+        name: gymType.name,
       });
       return newGymType.save();
     },
