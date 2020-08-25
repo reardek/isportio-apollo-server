@@ -34,7 +34,6 @@ type User {
   type GymTag {
     _id: ID
     name: String
-    description: String
   }
 
   type Trainer {
