@@ -25,6 +25,8 @@ type Mutation {
 
   addGymType(name: String): GymType
 
+  addGymTag(name: String!, description: String): GymTag
+
   addTrainer(
     firstName: String
     lastName: String

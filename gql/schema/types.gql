@@ -22,12 +22,19 @@ type User {
     gymTypeId: ID
     description: String
     availability: Int
+    gymTags: ID
     equipments: [Equipment]
   }
 
   type GymType {
     _id: ID
-    Name: String
+    name: String
+  }
+
+  type GymTag {
+    _id: ID
+    name: String
+    description: String
   }
 
   type Trainer {

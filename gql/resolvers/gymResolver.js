@@ -8,6 +8,7 @@ module.exports = {
         gymTypeId: gym.gymTypeId,
         description: gym.description,
         availability: gym.availability,
+        gymTags: [...gym.gymTags],
         equipments: [...gym.equipments],
       });
       return newGym.save();
