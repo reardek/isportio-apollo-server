@@ -2,3 +2,4 @@
 /config/loginCredential.js
 .env
 /mongo
+/.vscode

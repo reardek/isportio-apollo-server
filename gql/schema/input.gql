@@ -26,6 +26,5 @@ input GymInput {
   gymTypeId: ID
   description: String
   availability: Int
-  sportObjectId: ID
   equipments: [EquipmentInput]
 }

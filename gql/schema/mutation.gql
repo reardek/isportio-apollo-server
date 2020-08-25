@@ -1,54 +1,50 @@
 type Mutation {
-    addUser(
-      loginEmail: String!
-      password: String!
-      firstName: String!
-      lastName: String!
-      birthDate: Date!
-    ): User
+  addUser(
+    loginEmail: String!
+    password: String!
+    firstName: String!
+    lastName: String!
+    birthDate: Date!
+  ): User
 
-    addReservation(
-      startDateTime: Date!
-      endDateTime: Date!
-      userId: ID!
-      gymId: ID!
-    ): Reservation
+  addReservation(
+    startDateTime: Date!
+    endDateTime: Date!
+    userId: ID!
+    gymId: ID!
+  ): Reservation
 
-    addGym(
-      gymTypeId: ID
-      desciption: String
-      availability: Int
-      equipments: [EquipmentInput!]
-    ): Gym
+  addGym(
+    gymTypeId: ID
+    desciption: String
+    availability: Int
+    equipments: [EquipmentInput!]
+  ): Gym
 
-    addGymType(
-      name: String
-    ): GymType
+  addGymToSportObject(sportObjectId: ID, gym: GymInput): SportObject
 
-    addTrainer(
-      firstName: String
-      lastName: String
-      specializations: [SpecializationInput!]
-    ): Trainer
+  addGymType(name: String): GymType
 
-    addSportObject(
-      name: String
-      address: AddressInput
-      gyms: [GymInput]
-      SportObjectOwnerId: ID
-    ): SportObject
+  addTrainer(
+    firstName: String
+    lastName: String
+    specializations: [SpecializationInput!]
+  ): Trainer
 
-    addSportObjectOwner(
-      firstName: String
-      lastName: String
-      companyId: ID
-    ): SportObjectOwner
+  addSportObject(
+    name: String
+    address: AddressInput
+    gyms: [GymInput]
+    SportObjectOwnerId: ID
+  ): SportObject
 
-    addCompany(
-      name: String
-      companyCode: String
-      address: AddressInput
-    ): Company
+  addSportObjectOwner(
+    firstName: String
+    lastName: String
+    companyId: ID
+  ): SportObjectOwner
 
-    addReview(desciption: String, starRate: Float, sportObjectId: ID): Review
-  }
+  addCompany(name: String, companyCode: String, address: AddressInput): Company
+
+  addReview(desciption: String, starRate: Float, sportObjectId: ID): Review
+}

@@ -4,4 +4,4 @@ const gymTypeSchema = Schema({
   name: String,
 });
 
-exports = model("gymType", gymTypeSchema);
+module.exports = model("gymType", gymTypeSchema);
