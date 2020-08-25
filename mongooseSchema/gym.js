@@ -5,7 +5,7 @@ const gymSchema = Schema({
   gymTypeId: ObjectId,
   description: String,
   availability: Number,
-  gymTags: [ObjectId],
+  gymTags: [String],
   equipments: [equipmentSchema],
 });
 
