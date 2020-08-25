@@ -3,7 +3,7 @@ const GymTag = require("../../mongooseSchema/gymTag");
 module.exports = {
   Query: { gymTags: () => GymTag.find({}) },
   Mutation: {
-    addGym: (parent, gymTag) => {
+    addGymTag: (parent, gymTag) => {
       const newGymTag = new GymTag({
         name: gymTag.name,
       });
