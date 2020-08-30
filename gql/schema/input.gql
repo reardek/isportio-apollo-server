@@ -15,6 +15,7 @@ input AddressInput {
   city: String
   zipCode: String
   country: CountryInput
+  geoPoint:[Float]
 }
 
 input CountryInput {

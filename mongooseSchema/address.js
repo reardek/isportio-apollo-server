@@ -8,6 +8,7 @@ const addressSchema = new Schema({
   city: String,
   zipCode: String,
   country: countrySchema,
+  geoPoint: [Number]
 });
 
 module.exports = addressSchema;
