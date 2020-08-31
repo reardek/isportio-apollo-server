@@ -5,6 +5,7 @@ const gymSchema = Schema({
   gymTypeId: ObjectId,
   description: String,
   availability: Number,
+  maxAvailability: Number,
   gymTags: [String],
   equipments: [equipmentSchema],
 });

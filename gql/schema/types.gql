@@ -22,6 +22,7 @@ type Gym {
   gymTypeId: ID
   description: String
   availability: Int
+  maxAvailability: Int
   gymTags: [String]
   equipments: [Equipment]
 }

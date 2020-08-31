@@ -3,6 +3,13 @@ const SportObject = require("../../mongooseSchema/sportObject");
 module.exports = {
   Query: {
     sportObjects: () => SportObject.find({}),
+    sportObjectByCityAndAvailability: async (parent, {city, availability}) =>
+      SportObject.find({
+        $and: [
+          { "address.city": city },
+          { "gyms.availability": { $gte: availability } },
+        ],
+      }),
   },
   Mutation: {
     addSportObject: (parent, sportObject) => {
