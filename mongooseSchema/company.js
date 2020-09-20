@@ -1,10 +1,10 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, ObjectId } = require("mongoose");
 const addressSchema = require("./address");
 
 const companySchema = new Schema({
   name: String,
   companyCode: String,
-  address: addressSchema,
+  address: [{ type: ObjectId, ref: "address" }],
 });
 
 module.exports = model("company", companySchema);

@@ -14,6 +14,16 @@ type Mutation {
     gymId: ID!
   ): Reservation
 
+  addAddress(
+    streetName: String
+    buildingNumber: String
+    flatNumber: String
+    city: String
+    zipCode: String
+    country: ID
+    geoPoint: [Float]
+  ): Address
+
   addGym(
     gymTypeId: ID
     desciption: String

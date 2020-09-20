@@ -4,9 +4,14 @@ const { gymSchema } = require("./gym");
 
 const sportObjectSchema = new Schema({
   name: String,
-  address: addressSchema,
+  address: [
+    {
+      type: ObjectId,
+      ref: "address",
+    },
+  ],
   gyms: [gymSchema],
-  sportObjectOwnerId: ObjectId,
+  sportObjectOwnerId: [ObjectId],
 });
 
 module.exports = model("sportObject", sportObjectSchema);
