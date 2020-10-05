@@ -7,10 +7,9 @@ module.exports = {
     userById: (parent, args) => User.findById({ _id: args.userId }),
   },
   Mutation: {
-    addUser: (parent, user) => {
-      let pass = bcrypt.hashSync(user.password, 10, (err, hash) => {
+    addUser: async (parent, user) => {
+      let pass = await bcrypt.hashSync(user.password, 10, (err, hash) => {
         if (err) console.log(err);
-        console.log(hash);
         return hash;
       });
       const newUser = new User({
