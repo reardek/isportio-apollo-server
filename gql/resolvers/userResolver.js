@@ -1,4 +1,5 @@
 const User = require("../../mongooseSchema/user");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   Query: {
@@ -7,9 +8,14 @@ module.exports = {
   },
   Mutation: {
     addUser: (parent, user) => {
+      let pass = bcrypt.hashSync(user.password, 10, (err, hash) => {
+        if (err) console.log(err);
+        console.log(hash);
+        return hash;
+      });
       const newUser = new User({
         loginEmail: user.loginEmail,
-        password: user.password,
+        password: pass,
         firstName: user.firstName,
         lastName: user.lastName,
         birthDate: user.birthDate,

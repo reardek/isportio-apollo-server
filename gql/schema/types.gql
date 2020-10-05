@@ -5,6 +5,7 @@ type User {
   firstName: String
   lastName: String
   birthDate: Date
+  role: String
   registeredDate: Date
 }
 
@@ -90,7 +91,7 @@ type Address {
   city: String
   zipCode: String
   country: Country
-  geoPoint:[Float]
+  geoPoint: [Float]
 }
 
 type Country {
