@@ -60,4 +60,6 @@ type Mutation {
   addCompany(name: String, companyCode: String, address: AddressInput): Company
 
   addReview(desciption: String, starRate: Float, sportObjectId: ID): Review
+
+  loginUser(loginEmail: String, password: String): String
 }
