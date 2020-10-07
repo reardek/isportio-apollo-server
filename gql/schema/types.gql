@@ -5,7 +5,7 @@ type User {
   firstName: String
   lastName: String
   birthDate: Date
-  role: String
+  role: Role
   registeredDate: Date
 }
 

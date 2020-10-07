@@ -5,7 +5,7 @@ type Mutation {
     firstName: String!
     lastName: String!
     birthDate: Date!
-    role: String
+    role: Role
   ): User
 
   addReservation(

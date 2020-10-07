@@ -12,10 +12,7 @@ module.exports = {
   },
   Mutation: {
     addUser: async (parent, user) => {
-      let pass = await bcrypt.hashSync(user.password, 10, (err, hash) => {
-        if (err) console.log(err);
-        return hash;
-      });
+      const pass = await bcrypt.hash(user.password, 10);
       const newUser = new User({
         loginEmail: user.loginEmail,
         password: pass,
