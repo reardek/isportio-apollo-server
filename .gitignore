@@ -4,3 +4,4 @@
 /mongo
 /.vscode
 private.key
+public.pem

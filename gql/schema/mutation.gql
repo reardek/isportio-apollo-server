@@ -62,4 +62,6 @@ type Mutation {
   addReview(desciption: String, starRate: Float, sportObjectId: ID): Review
 
   loginUser(loginEmail: String, password: String): String
+
+  verifyUser(token: String): Boolean
 }

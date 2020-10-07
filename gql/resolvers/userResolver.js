@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const fs = require("fs");
 const path = require("path");
 const jwt = require("jsonwebtoken");
-const { join } = require("path");
 
 module.exports = {
   Query: {
@@ -44,6 +43,13 @@ module.exports = {
         );
         return jsonToken;
       }
+    },
+    verifyUser: (parent, { token }) => {
+      const pathToKey = path.join(__dirname, "..", "..", "public.pem");
+      const key = fs.readFileSync(pathToKey, "utf-8");
+      const jsonToken = jwt.verify(token, key, { algorithm: "RS256" });
+      console.log(jsonToken);
+      if (jsonToken) return true;
     },
   },
 };
