@@ -47,9 +47,11 @@ module.exports = {
     verifyUser: (parent, { token }) => {
       const pathToKey = path.join(__dirname, "..", "..", "public.pem");
       const key = fs.readFileSync(pathToKey, "utf-8");
-      const jsonToken = jwt.verify(token, key, { algorithm: "RS256" });
-      console.log(jsonToken);
-      if (jsonToken) return true;
+      const jsonToken = jwt.verify(token, key, { algorithm: "RS256" }, (err, res) => {
+        if (err) return err
+        else return true
+      });
+      return jsonToken;
     },
   },
 };
