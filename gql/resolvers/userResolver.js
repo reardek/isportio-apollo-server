@@ -31,8 +31,8 @@ module.exports = {
       const validate = await bcrypt.compare(password, findUser.password);
       if (validate) {
         const pathToKey = path.join(__dirname, "..", "..", "private.key");
-        const key = await fs.readFileSync(pathToKey, "utf-8");
-        const jsonToken = await jwt.sign(
+        const key = fs.readFileSync(pathToKey, "utf-8");
+        const jsonToken = jwt.sign(
           {
             loginEmail: findUser.loginEmail,
             role: findUser.role,
@@ -48,8 +48,9 @@ module.exports = {
       const pathToKey = path.join(__dirname, "..", "..", "public.pem");
       const key = fs.readFileSync(pathToKey, "utf-8");
       const jsonToken = jwt.verify(token, key, { algorithm: "RS256" }, (err, res) => {
+        console.log(res)
         if (err) return err
-        else return true
+        else return res
       });
       return jsonToken;
     },

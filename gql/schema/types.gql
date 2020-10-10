@@ -104,3 +104,10 @@ type Cities {
   Gmina: String
   Wojewodztwo: String
 }
+
+type JsonToken {
+  loginEmail: String,
+  role: String,
+  exp: Int,
+  iat: Int
+}
