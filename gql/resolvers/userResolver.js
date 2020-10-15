@@ -8,6 +8,7 @@ module.exports = {
   Query: {
     users: () => User.find({}),
     userById: (parent, args) => User.findById({ _id: args.userId }),
+    userByEmail: (parent, {loginEmail}) => User.findOne({"loginEmail": loginEmail})
   },
   Mutation: {
     addUser: async (parent, user) => {

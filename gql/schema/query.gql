@@ -1,6 +1,7 @@
 type Query {
   users: [User]
   userById(userId: String!): User
+  userByEmail(loginEmail: String!): User
   reservations: [Reservation]
   userReservations(userId: ID!): [Reservation]
   gyms: [Gym]
@@ -15,6 +16,9 @@ type Query {
   cities(filter: String, skip: Int, first: Int): [Cities]
   gymTypes: [GymType]
   gymTags: [GymTag]
-  sportObjectByCityAndAvailability(city: String, availability: Int): [SportObject]
+  sportObjectByCityAndAvailability(
+    city: String
+    availability: Int
+  ): [SportObject]
   sportObjectByGymType(gymType: String): [SportObject]
 }
