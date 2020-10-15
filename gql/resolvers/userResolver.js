@@ -53,5 +53,10 @@ module.exports = {
       });
       return jsonToken;
     },
+    isLoginUserExists: async (parent, {loginEmail}) => {
+      const isUserExists = await User.findOne({"loginEmail": loginEmail})
+      if (isUserExists) return true
+      else return false
+    }
   },
 };

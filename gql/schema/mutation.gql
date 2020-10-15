@@ -64,4 +64,6 @@ type Mutation {
   loginUser(loginEmail: String, password: String): String
 
   verifyUser(token: String): JsonToken
+
+  isLoginUserExists(loginEmail: String): Boolean
 }
