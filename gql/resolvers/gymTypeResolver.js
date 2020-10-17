@@ -6,6 +6,7 @@ module.exports = {
     addGymType: (parent, gymType) => {
       const newGymType = new GymType({
         name: gymType.name,
+        namePL: gymType.namePL
       });
       return newGymType.save();
     },

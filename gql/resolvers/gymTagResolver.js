@@ -6,6 +6,7 @@ module.exports = {
     addGymTag: (parent, gymTag) => {
       const newGymTag = new GymTag({
         name: gymTag.name,
+        namePL: gymTag.namePL
       });
       return newGymTag.save();
     },

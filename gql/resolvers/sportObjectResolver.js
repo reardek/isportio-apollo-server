@@ -2,13 +2,16 @@ const SportObject = require("../../mongooseSchema/sportObject");
 
 module.exports = {
   Query: {
-    sportObjects: () =>
-      SportObject.find({}).populate({
+    sportObjects: () => {
+      let sportObjects = SportObject.find({}).populate({
         path: "address",
         populate: {
           path: "country",
         },
-      }),
+      });
+      console.log(sportObjects);
+      return sportObjects
+    },
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
       SportObject.find({
         $and: [
@@ -23,7 +26,7 @@ module.exports = {
         name: sportObject.name,
         address: sportObject.address,
         sportObjectOwnerId: sportObject.sportObjectOwnerId,
-        gyms: [...sportObject.gyms],
+        gyms: sportObject.gyms,
       });
       return newSportObject.save();
     },

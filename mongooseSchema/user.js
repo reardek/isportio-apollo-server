@@ -1,6 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, ObjectId } = require("mongoose");
 
 const userSchema = new Schema({
+  _id: ObjectId,
   loginEmail: String,
   password: String,
   firstName: String,

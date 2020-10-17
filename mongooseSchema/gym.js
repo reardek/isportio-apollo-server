@@ -2,12 +2,14 @@ const { Schema, model, ObjectId } = require("mongoose");
 const equipmentSchema = require("./equipment");
 
 const gymSchema = Schema({
-  gymTypeId: ObjectId,
+  _id: ObjectId,
+  sportObject: {type: ObjectId, ref: "sportObject"},
+  gymType: {type: ObjectId, ref: "gymTag"},
   description: String,
   availability: Number,
   maxAvailability: Number,
-  gymTags: [String],
-  equipments: [equipmentSchema],
+  gymTags: [{type: ObjectId, ref: "gymTag"}],
+  equipments: [String],
 });
 
 module.exports = model("gym", gymSchema);

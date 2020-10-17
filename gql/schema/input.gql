@@ -14,7 +14,7 @@ input AddressInput {
   flatNumber: String
   city: String
   zipCode: String
-  country: CountryInput
+  country: String
   geoPoint:[Float]
 }
 

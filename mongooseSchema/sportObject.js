@@ -1,17 +1,11 @@
 const { Schema, model, ObjectId } = require("mongoose");
-const addressSchema = require("./address");
-const { gymSchema } = require("./gym");
 
 const sportObjectSchema = new Schema({
+  _id: ObjectId,
   name: String,
-  address: [
-    {
-      type: ObjectId,
-      ref: "address",
-    },
-  ],
-  gyms: [gymSchema],
-  sportObjectOwnerId: [ObjectId],
+  address: { type: ObjectId, ref: "address" },
+  gyms: [{ type: ObjectId, ref: "gym" }],
+  sportObjectOwner: { type: ObjectId, ref: "sportObjectOwner" },
 });
 
 module.exports = model("sportObject", sportObjectSchema);

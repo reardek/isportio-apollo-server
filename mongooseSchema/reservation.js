@@ -7,8 +7,8 @@ const reservationSchema = Schema({
     type: Date,
     default: Date.now(),
   },
-  userId: ObjectId,
-  gymId: ObjectId,
+  user: {type: ObjectId, ref: "user"},
+  gym: {type: ObjectId, ref: "gym"},
 });
 
 module.exports = model("reservation", reservationSchema);
