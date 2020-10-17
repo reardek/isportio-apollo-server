@@ -9,8 +9,8 @@ module.exports = {
         description: gym.description,
         maxAvailability: gym.availability,
         availability: gym.availability,
-        gymTags: [...gym.gymTags],
-        equipments: [...gym.equipments],
+        gymTags: gym.gymTags,
+        equipments: gym.equipments,
       });
       return newGym.save();
     },

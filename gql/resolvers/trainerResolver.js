@@ -7,7 +7,7 @@ module.exports = {
       const newTrainer = new Trainer({
         firstName: trainer.firstName,
         lastName: trainer.lastName,
-        specializations: [...trainer.specialization],
+        specializations: trainer.specialization,
       });
       return newTrainer.save();
     },
