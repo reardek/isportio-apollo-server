@@ -86,8 +86,8 @@ type Review {
 
 type Address {
   streetName: String
-  buildingNumber: Int
-  flatNumber: Int
+  buildingNumber: String
+  flatNumber: String
   city: String
   zipCode: String
   country: Country

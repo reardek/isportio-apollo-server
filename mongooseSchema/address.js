@@ -7,7 +7,7 @@ const addressSchema = new Schema({
   flatNumber: String,
   city: String,
   zipCode: String,
-  country: [{ type: ObjectId, ref: "country" }],
+  country: { type: ObjectId, ref: "country" },
   geoPoint: [Number],
 });
 
