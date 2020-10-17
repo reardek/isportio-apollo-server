@@ -59,15 +59,15 @@ type SportObject {
   _id: ID
   name: String
   address: Address
-  gyms: Gym
-  SportObjectOwnerId: ID
+  gyms: [Gym]
+  sportObjectOwner: SportObjectOwner
 }
 
 type SportObjectOwner {
   _id: ID
   firstName: String
   lastName: String
-  companyId: ID
+  company: SportObject
 }
 
 type Company {

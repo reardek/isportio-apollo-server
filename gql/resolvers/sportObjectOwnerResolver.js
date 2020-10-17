@@ -1,15 +1,19 @@
+const mongoose = require("mongoose");
 const SportObjectOwner = require("../../mongooseSchema/sportObjectOwner");
+const Company = require("../../mongooseSchema/company")
 
 module.exports = {
   Query: { sportObjectOwners: () => SportObjectOwner.find({}) },
   Mutation: {
-    addSportObjectOwner: (parent, sportObjectOwner) => {
+    addSportObjectOwner: async (parent, sportObjectOwner) => {
+      const companyId = await Company.findOne({name: sportObjectOwner.company}, "_id");
       const newSportObjectOwner = new SportObjectOwner({
+        _id: new mongoose.Types.ObjectId(),
         firstName: sportObjectOwner.firstName,
         lastName: sportObjectOwner.lastName,
-        companyId: sportObjectOwner.companyId,
+        company: companyId,
       });
-      return newSportObjectOwner.save();
+      return (await newSportObjectOwner.save()).populate("company").execPopulate();
     },
   },
 };

@@ -48,13 +48,13 @@ type Mutation {
     name: String
     address: AddressInput
     gyms: [GymInput]
-    SportObjectOwnerId: ID
+    SportObjectOwner: String
   ): SportObject
 
   addSportObjectOwner(
     firstName: String
     lastName: String
-    companyId: ID
+    company: String
   ): SportObjectOwner
 
   addCompany(name: String, companyCode: String, address: AddressInput): Company
