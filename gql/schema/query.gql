@@ -13,6 +13,8 @@ type Query {
   sportObjectOwners: [SportObjectOwner]
   companies: [Company]
   reviews: [Review]
+  reviewsByUser(user: String): [Review]
+  reviewsBySportObject(sportObject: String): [Review]
   cities(filter: String, skip: Int, first: Int): [Cities]
   gymTypes: [GymType]
   gymTags: [GymTag]

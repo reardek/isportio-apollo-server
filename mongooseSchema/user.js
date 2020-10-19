@@ -12,6 +12,7 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  reviews: [{type: ObjectId, ref: "review"}]
 });
 
 module.exports = model("user", userSchema);

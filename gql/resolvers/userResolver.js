@@ -20,6 +20,7 @@ module.exports = {
         lastName: user.lastName,
         role: user.role,
         birthDate: user.birthDate,
+        reviews: []
       });
       return newUser.save();
     },

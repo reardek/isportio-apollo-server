@@ -60,6 +60,7 @@ module.exports = {
         address: sportObjectAddress._id,
         sportObjectOwner: sportObjectOwner,
         gyms: [],
+        reviews: []
       });
       return (await newSportObject.save())
         .populate({ path: "address", populate: { path: "country" } })
