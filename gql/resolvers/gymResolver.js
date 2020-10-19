@@ -30,6 +30,7 @@ module.exports = {
         gymTags: [],
         equipments: [],
       });
+      await SportObject.updateOne({$push: {gyms: newGym._id}});
       return newGym.save();
     },
   },

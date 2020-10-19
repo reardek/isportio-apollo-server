@@ -6,27 +6,32 @@ const Country = require("../../mongooseSchema/country");
 
 module.exports = {
   Query: {
-    sportObjects: () => {
-      const sportObjects = SportObject.find({}).populate({
-        path: "address",
-        populate: {
-          path: "country",
-        },
-      }).populate("sportObjectOwner");
-      return sportObjects;
-    },
+    sportObjects: async () =>
+      await SportObject.find({})
+        .populate({
+          path: "address",
+          populate: {
+            path: "country",
+          },
+        })
+        .populate("sportObjectOwner")
+        .populate({ path: "gyms", ref: "gym" })
+        .populate({ path: "reviews", ref: "review" }),
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
       SportObject.find({
         $and: [
           { "address.city": city },
           { "gyms.availability": { $gte: availability } },
         ],
-      }).populate({
-        path: "address",
-        populate: {
-          path: "country",
-        },
-      }),
+      })
+        .populate({
+          path: "address",
+          populate: {
+            path: "country",
+          },
+        })
+        .populate({ path: "gyms", ref: "gym" })
+        .populate({ path: "reviews", ref: "review" }),
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {
@@ -60,7 +65,7 @@ module.exports = {
         address: sportObjectAddress._id,
         sportObjectOwner: sportObjectOwner,
         gyms: [],
-        reviews: []
+        reviews: [],
       });
       return (await newSportObject.save())
         .populate({ path: "address", populate: { path: "country" } })
