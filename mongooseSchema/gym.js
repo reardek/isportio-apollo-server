@@ -4,12 +4,13 @@ const equipmentSchema = require("./equipment");
 const gymSchema = Schema({
   _id: ObjectId,
   sportObject: {type: ObjectId, ref: "sportObject"},
-  gymType: {type: ObjectId, ref: "gymTag"},
+  gymType: {type: ObjectId, ref: "gymType"},
+  name: String,
   description: String,
   availability: Number,
   maxAvailability: Number,
   gymTags: [{type: ObjectId, ref: "gymTag"}],
-  equipments: [String],
+  equipments: [{type: ObjectId, ref: "equipment"}],
 });
 
 module.exports = model("gym", gymSchema);

@@ -20,22 +20,26 @@ type Reservation {
 
 type Gym {
   _id: ID
-  gymTypeId: ID
+  sportObject: SportObject
+  gymType: GymType
+  name: String
   description: String
   availability: Int
   maxAvailability: Int
-  gymTags: [String]
+  gymTags: [GymTag]
   equipments: [Equipment]
 }
 
 type GymType {
   _id: ID
   name: String
+  namePL: String
 }
 
 type GymTag {
   _id: ID
   name: String
+  namePL: String
 }
 
 type Trainer {
@@ -46,8 +50,9 @@ type Trainer {
 }
 
 type Equipment {
+  _id: ID
   name: String
-  quantity: Int
+  namePL: String
 }
 
 type Specialization {

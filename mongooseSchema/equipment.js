@@ -1,8 +1,9 @@
-const { Schema } = require("mongoose");
+const { Schema, model, ObjectId } = require("mongoose");
 
 const equipmentSchema = Schema({
+  _id: ObjectId,
   name: String,
-  equipment: Number,
+  namePL: String,
 });
 
-module.exports = equipmentSchema;
+module.exports = model("equipment", equipmentSchema);

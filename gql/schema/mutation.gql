@@ -26,17 +26,20 @@ type Mutation {
   ): Address
 
   addGym(
-    gymTypeId: ID
-    desciption: String
+    sportObject: String
+    gymType: String
+    name: String
+    description: String
     availability: Int
-    equipments: [EquipmentInput!]
   ): Gym
 
   addGymToSportObject(sportObjectId: ID, gym: GymInput): SportObject
 
-  addGymType(name: String): GymType
+  addGymType(name: String, namePL: String): GymType
 
-  addGymTag(name: String!): GymTag
+  addGymTag(name: String! namePL: String): GymTag
+
+  addGymTagToGym(sportObject: String, gym: String, gymTag: String): Gym
 
   addTrainer(
     firstName: String
@@ -60,6 +63,10 @@ type Mutation {
   addCompany(name: String, companyCode: String, address: AddressInput): Company
 
   addReview(desciption: String, starRate: Float, sportObjectId: ID): Review
+
+  addEquipment(name: String, namePL: String, quantity: Int): Equipment
+
+  addEquipmentToGym(sportObject: String, gym: String, equipment: String): Gym
 
   loginUser(loginEmail: String, password: String): String
 

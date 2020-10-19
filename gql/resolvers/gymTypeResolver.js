@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const GymType = require("../../mongooseSchema/gymType");
 
 module.exports = {
@@ -5,6 +6,7 @@ module.exports = {
   Mutation: {
     addGymType: (parent, gymType) => {
       const newGymType = new GymType({
+        _id: new mongoose.Types.ObjectId(),
         name: gymType.name,
         namePL: gymType.namePL
       });

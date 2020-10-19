@@ -1,6 +1,6 @@
 input EquipmentInput {
   name: String
-  quantity: Int
+  namePL: String
 }
 
 input SpecializationInput {
