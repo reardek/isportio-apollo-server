@@ -15,7 +15,14 @@ module.exports = {
           },
         })
         .populate("sportObjectOwner")
-        .populate({ path: "gyms", ref: "gym" })
+        .populate({
+          path: "gyms",
+          populate: [
+            { path: "equipments", ref: "equipment" },
+            { path: "gymType", ref: "gymType" },
+            { path: "gymTags", ref: "gymTag" },
+          ],
+        })
         .populate({ path: "reviews", ref: "review" }),
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
       SportObject.find({
