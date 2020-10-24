@@ -29,6 +29,7 @@ type Gym {
   maxAvailability: Int
   gymTags: [GymTag]
   equipments: [Equipment]
+  reviews: [Review]
 }
 
 type GymType {
@@ -88,7 +89,7 @@ type Review {
   user: User
   description: String
   starRate: Float
-  sportObject: SportObject
+  sportObject: Gym
 }
 
 type Address {

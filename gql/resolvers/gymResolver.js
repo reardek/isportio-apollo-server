@@ -10,7 +10,8 @@ module.exports = {
         .populate("gymType")
         .populate("sportObject")
         .populate({ path: "gymTags", populate: "gymTag" })
-        .populate({ path: "equipments", populate: "equipment" }),
+        .populate({ path: "equipments", populate: "equipment" })
+        .populate({ path: "reviews", ref: "review" }),
   },
   Mutation: {
     addGym: async (parent, gym) => {

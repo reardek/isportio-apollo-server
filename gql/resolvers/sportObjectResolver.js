@@ -22,8 +22,7 @@ module.exports = {
             { path: "gymType", ref: "gymType" },
             { path: "gymTags", ref: "gymTag" },
           ],
-        })
-        .populate({ path: "reviews", ref: "review" }),
+        }),
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
       SportObject.find({
         $and: [
@@ -37,8 +36,7 @@ module.exports = {
             path: "country",
           },
         })
-        .populate({ path: "gyms", ref: "gym" })
-        .populate({ path: "reviews", ref: "review" }),
+        .populate({ path: "gyms", ref: "gym" }),
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {

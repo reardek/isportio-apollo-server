@@ -5,7 +5,7 @@ const reviewSchema = new Schema({
   user: {type: ObjectId, ref: "user"},
   description: String,
   starRate: Number,
-  sportObject: {type: ObjectId, ref: "sportObject"},
+  gym: {type: ObjectId, ref: "gym"},
 });
 
 module.exports = model("review", reviewSchema);
