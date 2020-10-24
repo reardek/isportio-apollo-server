@@ -25,6 +25,8 @@ type Gym {
   gymType: GymType
   name: String
   description: String
+  mainPhoto: String
+  sidePhotos: [String]
   availability: Int
   maxAvailability: Int
   gymTags: [GymTag]

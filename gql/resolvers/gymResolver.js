@@ -26,6 +26,8 @@ module.exports = {
         gymType: gymTypeId,
         name: gym.name,
         description: gym.description,
+        mainPhoto: gym.mainPhoto,
+        sidePhotos: gym.sidePhotos,
         maxAvailability: gym.availability,
         availability: gym.availability,
         gymTags: [],

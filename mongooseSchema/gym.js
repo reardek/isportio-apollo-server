@@ -8,6 +8,8 @@ const gymSchema = Schema({
   name: String,
   description: String,
   availability: Number,
+  mainPhoto: String,
+  sidePhotos: [String],
   maxAvailability: Number,
   gymTags: [{type: ObjectId, ref: "gymTag"}],
   equipments: [{type: ObjectId, ref: "equipment"}],
