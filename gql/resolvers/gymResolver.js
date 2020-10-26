@@ -12,6 +12,7 @@ module.exports = {
         .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
         .populate({ path: "reviews", ref: "review" }),
+    gymById: (parent, {gymId}) => Gym.findById(gymId)
   },
   Mutation: {
     addGym: async (parent, gym) => {
@@ -26,6 +27,7 @@ module.exports = {
         gymType: gymTypeId,
         name: gym.name,
         description: gym.description,
+        price: gym.price,
         mainPhoto: gym.mainPhoto,
         sidePhotos: gym.sidePhotos,
         maxAvailability: gym.availability,

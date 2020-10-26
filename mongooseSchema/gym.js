@@ -8,6 +8,7 @@ const gymSchema = Schema({
   name: String,
   description: String,
   availability: Number,
+  price: Number,
   mainPhoto: String,
   sidePhotos: [String],
   maxAvailability: Number,

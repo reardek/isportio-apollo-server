@@ -5,6 +5,7 @@ type Query {
   reservations: [Reservation]
   userReservations(userId: ID!): [Reservation]
   gyms: [Gym]
+  gymById: Gym
   equipments: [Equipment]
   trainers: [Trainer]
   specializations: [Specialization]

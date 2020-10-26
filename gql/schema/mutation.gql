@@ -62,7 +62,7 @@ type Mutation {
 
   addCompany(name: String, companyCode: String, address: AddressInput): Company
 
-  addReview(user: String, description: String, starRate: Float, gym: String): Review
+  addReview(user: String, description: String, starRate: Float, gym: ID): Review
 
   addEquipment(name: String, namePL: String, quantity: Int): Equipment
 

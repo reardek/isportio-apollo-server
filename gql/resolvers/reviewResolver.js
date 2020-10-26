@@ -19,14 +19,13 @@ module.exports = {
   },
   Mutation: {
     addReview: async (parent, review) => {
-      const gymId = await Gym.findOne({name: review.gym}, "_id");
       const userId = await User.findOne({loginEmail: review.user}, "_id");
       const newReview = new Review({
         _id: new mongoose.Types.ObjectId(),
         user: userId,
         description: review.description,
         starRate: review.starRate,
-        gym: gymId,
+        gym: review.gymId,
       });
       newReview.save(err => {
         if (err) return err
