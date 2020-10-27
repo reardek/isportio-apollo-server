@@ -24,4 +24,5 @@ type Query {
     availability: Int
   ): [SportObject]
   sportObjectByGymType(gymType: String): [SportObject]
+  sportObjectById(sportObjectId: String): SportObject
 }

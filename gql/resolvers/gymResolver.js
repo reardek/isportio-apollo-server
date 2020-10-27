@@ -12,7 +12,13 @@ module.exports = {
         .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
         .populate({ path: "reviews", ref: "review" }),
-    gymById: (parent, {gymId}) => Gym.findById(gymId)
+    gymById: (parent, { gymId }) =>
+      Gym.findById(gymId)
+        .populate("gymType")
+        .populate("sportObject")
+        .populate({ path: "gymTags", populate: "gymTag" })
+        .populate({ path: "equipments", populate: "equipment" })
+        .populate({ path: "reviews", ref: "review" }),
   },
   Mutation: {
     addGym: async (parent, gym) => {
@@ -35,7 +41,7 @@ module.exports = {
         gymTags: [],
         equipments: [],
       });
-      await SportObject.updateOne({$push: {gyms: newGym._id}});
+      await SportObject.updateOne({ $push: { gyms: newGym._id } });
       return newGym.save();
     },
   },

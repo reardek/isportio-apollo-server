@@ -37,6 +37,15 @@ module.exports = {
           },
         })
         .populate({ path: "gyms", ref: "gym" }),
+    sportObjectById: async (parent, { sportObjectId }) =>
+      SportObject.findById(sportObjectId)
+        .populate({
+          path: "address",
+          populate: {
+            path: "country",
+          },
+        })
+        .populate({ path: "gyms", ref: "gym" }),
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {
