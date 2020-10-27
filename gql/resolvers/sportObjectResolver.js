@@ -36,7 +36,16 @@ module.exports = {
             path: "country",
           },
         })
-        .populate({ path: "gyms", ref: "gym" }),
+        .populate({
+          path: "gyms",
+          ref: "gym",
+          populate: [
+            { path: "gymTags", populate: "gymTag" },
+            { path: "equipments", populate: "equipment" },
+            { path: "reviews", populate: "review" },
+            { path: "gymType", populate: "gymType" },
+          ],
+        }),
     sportObjectById: async (parent, { sportObjectId }) =>
       SportObject.findById(sportObjectId)
         .populate({
@@ -45,7 +54,16 @@ module.exports = {
             path: "country",
           },
         })
-        .populate({ path: "gyms", ref: "gym" }),
+        .populate({
+          path: "gyms",
+          ref: "gym",
+          populate: [
+            { path: "gymTags", populate: "gymTag" },
+            { path: "equipments", populate: "equipment" },
+            { path: "reviews", populate: "review" },
+            { path: "gymType", populate: "gymType" },
+          ],
+        }),
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {
