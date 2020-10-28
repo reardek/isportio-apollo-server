@@ -25,6 +25,7 @@ type Gym {
   gymType: GymType
   name: String
   description: String
+  phoneNumber: String
   price: Float
   mainPhoto: String
   sidePhotos: [String]

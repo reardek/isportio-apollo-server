@@ -33,6 +33,7 @@ module.exports = {
         gymType: gymTypeId,
         name: gym.name,
         description: gym.description,
+        phoneNumber: gym.phoneNumber,
         price: gym.price,
         mainPhoto: gym.mainPhoto,
         sidePhotos: gym.sidePhotos,

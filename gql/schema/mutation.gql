@@ -26,10 +26,14 @@ type Mutation {
   ): Address
 
   addGym(
-    sportObject: String
-    gymType: String
+    sportObject: ID
+    gymType: ID
     name: String
     description: String
+    phoneNumber: String
+    price: Float
+    mainPhoto: String
+    sidePhotos: [String]
     availability: Int
   ): Gym
 
