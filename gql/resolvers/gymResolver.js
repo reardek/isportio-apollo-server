@@ -7,18 +7,19 @@ module.exports = {
   Query: {
     gyms: () =>
       Gym.find({})
-        .populate("gymType")
         .populate("sportObject")
         .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
         .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
     gymById: (parent, { gymId }) =>
       Gym.findById(gymId)
-        .populate("gymType")
         .populate("sportObject")
         .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
         .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
+  },
+  Gym: {
+    gymType: (parent) => GymType.findOne({gyms: parent._id})
   },
   Mutation: {
     addGym: async (parent, gym) => {

@@ -3,7 +3,7 @@ const SportObject = require("../../mongooseSchema/sportObject");
 const SportObjectOwner = require("../../mongooseSchema/sportObjectOwner");
 const Address = require("../../mongooseSchema/address");
 const Country = require("../../mongooseSchema/country");
-const sportObjectOwner = require("../../mongooseSchema/sportObjectOwner");
+const Gym = require("../../mongooseSchema/gym");
 
 module.exports = {
   Query: {
@@ -61,6 +61,7 @@ module.exports = {
     sportObjectOwner: (parent) =>
       SportObjectOwner.findOne({ sportObject: parent._id }),
     address: (parent) => Address.findOne({ sportObject: parent._id }),
+    gyms: (parent) => Gym.find({sportObject: parent._id})
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {
