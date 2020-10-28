@@ -24,7 +24,7 @@ module.exports = {
         user: review.user,
         description: review.description,
         starRate: review.starRate,
-        gym: review.gymId,
+        gym: review.gym,
       });
       newReview.save(err => {
         if (err) return err
