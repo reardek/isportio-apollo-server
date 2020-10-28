@@ -6,6 +6,10 @@ const reviewSchema = new Schema({
   description: String,
   starRate: Number,
   gym: {type: ObjectId, ref: "gym"},
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 module.exports = model("review", reviewSchema);
