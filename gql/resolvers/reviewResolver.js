@@ -19,10 +19,9 @@ module.exports = {
   },
   Mutation: {
     addReview: async (parent, review) => {
-      const userId = await User.findOne({loginEmail: review.user}, "_id");
       const newReview = new Review({
         _id: new mongoose.Types.ObjectId(),
-        user: userId,
+        user: review.user,
         description: review.description,
         starRate: review.starRate,
         gym: review.gymId,

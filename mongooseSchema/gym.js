@@ -7,6 +7,7 @@ const gymSchema = Schema({
   gymType: {type: ObjectId, ref: "gymType"},
   name: String,
   description: String,
+  phoneNumber: String,
   availability: Number,
   price: Number,
   mainPhoto: String,
