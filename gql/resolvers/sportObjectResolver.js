@@ -21,6 +21,7 @@ module.exports = {
             { path: "equipments", ref: "equipment" },
             { path: "gymType", ref: "gymType" },
             { path: "gymTags", ref: "gymTag" },
+            { path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}
           ],
         }),
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
@@ -42,7 +43,7 @@ module.exports = {
           populate: [
             { path: "gymTags", populate: "gymTag" },
             { path: "equipments", populate: "equipment" },
-            { path: "reviews", populate: "review" },
+            { path: "reviews", ref: "review", populate: {path: "user", ref: "user"}},
             { path: "gymType", populate: "gymType" },
           ],
         }),
@@ -60,7 +61,7 @@ module.exports = {
           populate: [
             { path: "gymTags", populate: "gymTag" },
             { path: "equipments", populate: "equipment" },
-            { path: "reviews", populate: "review" },
+            { path: "reviews", ref: "review", populate: {path: "user", ref: "user"}},
             { path: "gymType", populate: "gymType" },
           ],
         }),

@@ -11,14 +11,14 @@ module.exports = {
         .populate("sportObject")
         .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
-        .populate({ path: "reviews", ref: "review" }),
+        .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
     gymById: (parent, { gymId }) =>
       Gym.findById(gymId)
         .populate("gymType")
         .populate("sportObject")
         .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
-        .populate({ path: "reviews", populate: "review" }),
+        .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
   },
   Mutation: {
     addGym: async (parent, gym) => {
