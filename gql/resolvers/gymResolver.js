@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Gym = require("../../mongooseSchema/gym");
 const GymType = require("../../mongooseSchema/gymType");
+const GymTag = require("../../mongooseSchema/gymTag");
 const SportObject = require("../../mongooseSchema/sportObject");
 
 module.exports = {
@@ -8,18 +9,17 @@ module.exports = {
     gyms: () =>
       Gym.find({})
         .populate("sportObject")
-        .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
         .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
     gymById: (parent, { gymId }) =>
       Gym.findById(gymId)
         .populate("sportObject")
-        .populate({ path: "gymTags", populate: "gymTag" })
         .populate({ path: "equipments", populate: "equipment" })
         .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
   },
   Gym: {
-    gymType: (parent) => GymType.findOne({gyms: parent._id})
+    gymType: (parent) => GymType.findOne({gyms: parent._id}),
+    gymTags: (parent) => GymTag.find({gyms: parent._id}),
   },
   Mutation: {
     addGym: async (parent, gym) => {
