@@ -1,10 +1,13 @@
 const Address = require("../../mongooseSchema/address");
-const Country = require("../../mongooseSchema/country")
+const Country = require("../../mongooseSchema/country");
 module.exports = {
   Query: { addresses: () => Address.find({}).populate("country") },
+  Address: {
+    country: (parent) => Country.findOne({ addresses: parent._id }),
+  },
   Mutation: {
     addAddress: async (parent, address) => {
-      const countryID = await Country.findOne({code: address.country}, "_id")
+      const countryID = await Country.findOne({ code: address.country }, "_id");
       const newAddress = new Address({
         streetName: address.streetName,
         buildingNumber: address.buildingNumber,

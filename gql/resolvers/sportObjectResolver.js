@@ -8,85 +8,59 @@ const sportObjectOwner = require("../../mongooseSchema/sportObjectOwner");
 module.exports = {
   Query: {
     sportObjects: async () =>
-      await SportObject.find({})
-        .populate({
-          path: "address",
-          populate: {
-            path: "country",
+      await SportObject.find({}).populate({
+        path: "gyms",
+        populate: [
+          { path: "equipments", ref: "equipment" },
+          { path: "gymType", ref: "gymType" },
+          { path: "gymTags", ref: "gymTag" },
+          {
+            path: "reviews",
+            ref: "review",
+            populate: { path: "user", ref: "user" },
           },
-        })
-
-        .populate({
-          path: "gyms",
-          populate: [
-            { path: "equipments", ref: "equipment" },
-            { path: "gymType", ref: "gymType" },
-            { path: "gymTags", ref: "gymTag" },
-            {
-              path: "reviews",
-              ref: "review",
-              populate: { path: "user", ref: "user" },
-            },
-          ],
-        }),
+        ],
+      }),
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
       SportObject.find({
         $and: [
           { "address.city": city },
           { "gyms.availability": { $gte: availability } },
         ],
-      })
-        .populate({
-          path: "address",
-          populate: {
-            path: "country",
+      }).populate({
+        path: "gyms",
+        ref: "gym",
+        populate: [
+          { path: "gymTags", populate: "gymTag" },
+          { path: "equipments", populate: "equipment" },
+          {
+            path: "reviews",
+            ref: "review",
+            populate: { path: "user", ref: "user" },
           },
-        })
-        .populate({
-          path: "gyms",
-          ref: "gym",
-          populate: [
-            { path: "gymTags", populate: "gymTag" },
-            { path: "equipments", populate: "equipment" },
-            {
-              path: "reviews",
-              ref: "review",
-              populate: { path: "user", ref: "user" },
-            },
-            { path: "gymType", populate: "gymType" },
-          ],
-        }),
+          { path: "gymType", populate: "gymType" },
+        ],
+      }),
     sportObjectById: async (parent, { sportObjectId }) =>
-      SportObject.findById(sportObjectId)
-        .populate({
-          path: "address",
-          populate: {
-            path: "country",
+      SportObject.findById(sportObjectId).populate({
+        path: "gyms",
+        ref: "gym",
+        populate: [
+          { path: "gymTags", populate: "gymTag" },
+          { path: "equipments", populate: "equipment" },
+          {
+            path: "reviews",
+            ref: "review",
+            populate: { path: "user", ref: "user" },
           },
-        })
-        .populate({
-          path: "gyms",
-          ref: "gym",
-          populate: [
-            { path: "gymTags", populate: "gymTag" },
-            { path: "equipments", populate: "equipment" },
-            {
-              path: "reviews",
-              ref: "review",
-              populate: { path: "user", ref: "user" },
-            },
-            { path: "gymType", populate: "gymType" },
-          ],
-        }),
+          { path: "gymType", populate: "gymType" },
+        ],
+      }),
   },
   SportObject: {
-    sportObjectOwner: (parent) => {
-      console.log(SportObjectOwner.findOne({ sportObject: parent._id }));
-      return {
-        sportObject: SportObjectOwner.findOne({ sportObject: parent._id }),
-        address: Address.findOne() 
-      }
-    },
+    sportObjectOwner: (parent) =>
+      SportObjectOwner.findOne({ sportObject: parent._id }),
+    address: (parent) => Address.findOne({ sportObject: parent._id }),
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {
