@@ -3,6 +3,7 @@ const SportObject = require("../../mongooseSchema/sportObject");
 const SportObjectOwner = require("../../mongooseSchema/sportObjectOwner");
 const Address = require("../../mongooseSchema/address");
 const Country = require("../../mongooseSchema/country");
+const sportObjectOwner = require("../../mongooseSchema/sportObjectOwner");
 
 module.exports = {
   Query: {
@@ -14,14 +15,18 @@ module.exports = {
             path: "country",
           },
         })
-        .populate("sportObjectOwner")
+
         .populate({
           path: "gyms",
           populate: [
             { path: "equipments", ref: "equipment" },
             { path: "gymType", ref: "gymType" },
             { path: "gymTags", ref: "gymTag" },
-            { path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}
+            {
+              path: "reviews",
+              ref: "review",
+              populate: { path: "user", ref: "user" },
+            },
           ],
         }),
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
@@ -43,7 +48,11 @@ module.exports = {
           populate: [
             { path: "gymTags", populate: "gymTag" },
             { path: "equipments", populate: "equipment" },
-            { path: "reviews", ref: "review", populate: {path: "user", ref: "user"}},
+            {
+              path: "reviews",
+              ref: "review",
+              populate: { path: "user", ref: "user" },
+            },
             { path: "gymType", populate: "gymType" },
           ],
         }),
@@ -61,10 +70,23 @@ module.exports = {
           populate: [
             { path: "gymTags", populate: "gymTag" },
             { path: "equipments", populate: "equipment" },
-            { path: "reviews", ref: "review", populate: {path: "user", ref: "user"}},
+            {
+              path: "reviews",
+              ref: "review",
+              populate: { path: "user", ref: "user" },
+            },
             { path: "gymType", populate: "gymType" },
           ],
         }),
+  },
+  SportObject: {
+    sportObjectOwner: (parent) => {
+      console.log(SportObjectOwner.findOne({ sportObject: parent._id }));
+      return {
+        sportObject: SportObjectOwner.findOne({ sportObject: parent._id }),
+        address: Address.findOne() 
+      }
+    },
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {
