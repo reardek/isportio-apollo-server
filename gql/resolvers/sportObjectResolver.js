@@ -52,7 +52,8 @@ module.exports = {
     sportObjectOwner: (parent) =>
       SportObjectOwner.findOne({ sportObject: parent._id }),
     address: (parent) => Address.findOne({ sportObject: parent._id }),
-    gyms: (parent) => Gym.find({sportObject: parent._id})
+    gyms: (parent) => Gym.find({sportObject: parent._id}),
+    gymById: (parent, {gymId}) => Gym.findById(gymId),
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {

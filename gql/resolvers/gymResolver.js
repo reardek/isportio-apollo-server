@@ -19,11 +19,7 @@ module.exports = {
     gymType: (parent) => GymType.findOne({gyms: parent._id}),
     gymTags: (parent) => GymTag.find({gyms: parent._id}),
     equipments: (parent) => Equipment.find({gyms: parent._id}),
-    reviews: (parent) => {
-      const review = Review.find({gyms: parent._id}, (err, res) => {
-        console.log(res.toString())
-      });
-      return Review.find({gyms: parent._id})}
+    reviews: (parent) => Review.find({gym: parent._id})
   },
   Mutation: {
     addGym: async (parent, gym) => {
