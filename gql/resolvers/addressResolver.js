@@ -1,7 +1,7 @@
 const Address = require("../../mongooseSchema/address");
 const Country = require("../../mongooseSchema/country");
 module.exports = {
-  Query: { addresses: () => Address.find({}).populate("country") },
+  Query: { addresses: () => Address.find({}) },
   Address: {
     country: (parent) => Country.findOne({ addresses: parent._id }),
   },

@@ -7,53 +7,23 @@ const Gym = require("../../mongooseSchema/gym");
 
 module.exports = {
   Query: {
-    sportObjects: async () =>
-      await SportObject.find({}).populate({
-        path: "gyms",
-        populate: [
-          {
-            path: "reviews",
-            ref: "review",
-            populate: { path: "user", ref: "user" },
-          },
-        ],
-      }),
+    sportObjects: async () => await SportObject.find({}),
     sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
       SportObject.find({
         $and: [
           { "address.city": city },
           { "gyms.availability": { $gte: availability } },
         ],
-      }).populate({
-        path: "gyms",
-        ref: "gym",
-        populate: [
-          {
-            path: "reviews",
-            ref: "review",
-            populate: { path: "user", ref: "user" },
-          },
-        ],
       }),
     sportObjectById: async (parent, { sportObjectId }) =>
-      SportObject.findById(sportObjectId).populate({
-        path: "gyms",
-        ref: "gym",
-        populate: [
-          {
-            path: "reviews",
-            ref: "review",
-            populate: { path: "user", ref: "user" },
-          },
-        ],
-      }),
+      SportObject.findById(sportObjectId),
   },
   SportObject: {
     sportObjectOwner: (parent) =>
       SportObjectOwner.findOne({ sportObject: parent._id }),
     address: (parent) => Address.findOne({ sportObject: parent._id }),
-    gyms: (parent) => Gym.find({sportObject: parent._id}),
-    gymById: (parent, {gymId}) => Gym.findById(gymId),
+    gyms: (parent) => Gym.find({ sportObject: parent._id }),
+    gymById: (parent, { gymId }) => Gym.findById(gymId),
   },
   Mutation: {
     addSportObject: async (parent, sportObject) => {
