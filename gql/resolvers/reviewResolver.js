@@ -17,6 +17,9 @@ module.exports = {
       return gymReviews
     }
   },
+  Review: {
+    user: (parent) => User.findOne({review: parent._id})
+  },
   Mutation: {
     addReview: async (parent, review) => {
       const newReview = new Review({
