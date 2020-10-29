@@ -119,6 +119,7 @@ type Cities {
 }
 
 type JsonToken {
+  _id: ID
   loginEmail: String,
   role: String,
   exp: Int,

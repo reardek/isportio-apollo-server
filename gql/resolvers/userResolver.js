@@ -27,7 +27,7 @@ module.exports = {
     loginUser: async (parent, { loginEmail, password }) => {
       const findUser = await User.findOne(
         { loginEmail: loginEmail },
-        "loginEmail password role"
+        "_id loginEmail password role"
       );
 
       const validate = await bcrypt.compare(password, findUser.password);
@@ -36,6 +36,7 @@ module.exports = {
         const key = fs.readFileSync(pathToKey, "utf-8");
         const jsonToken = jwt.sign(
           {
+            _id: findUser._id,
             loginEmail: findUser.loginEmail,
             role: findUser.role,
             exp: Math.floor(Date.now() / 1000) + 60 * 60,
