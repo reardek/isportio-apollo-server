@@ -11,9 +11,6 @@ module.exports = {
       await SportObject.find({}).populate({
         path: "gyms",
         populate: [
-          { path: "equipments", ref: "equipment" },
-          { path: "gymType", ref: "gymType" },
-          { path: "gymTags", ref: "gymTag" },
           {
             path: "reviews",
             ref: "review",
@@ -31,14 +28,11 @@ module.exports = {
         path: "gyms",
         ref: "gym",
         populate: [
-          { path: "gymTags", populate: "gymTag" },
-          { path: "equipments", populate: "equipment" },
           {
             path: "reviews",
             ref: "review",
             populate: { path: "user", ref: "user" },
           },
-          { path: "gymType", populate: "gymType" },
         ],
       }),
     sportObjectById: async (parent, { sportObjectId }) =>
@@ -46,14 +40,11 @@ module.exports = {
         path: "gyms",
         ref: "gym",
         populate: [
-          { path: "gymTags", populate: "gymTag" },
-          { path: "equipments", populate: "equipment" },
           {
             path: "reviews",
             ref: "review",
             populate: { path: "user", ref: "user" },
           },
-          { path: "gymType", populate: "gymType" },
         ],
       }),
   },
