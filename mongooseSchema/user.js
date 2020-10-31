@@ -12,7 +12,8 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  reviews: [{type: ObjectId, ref: "review"}]
+  reviews: [{type: ObjectId, ref: "review"}],
+  reservations: [{type: ObjectId, ref: "reservation"}]
 });
 
 module.exports = model("user", userSchema);

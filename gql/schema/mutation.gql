@@ -9,10 +9,11 @@ type Mutation {
   ): User
 
   addReservation(
+    title: String
     startDateTime: Date!
     endDateTime: Date!
-    userId: ID!
-    gymId: ID!
+    user: ID!
+    gym: ID!
   ): Reservation
 
   addAddress(

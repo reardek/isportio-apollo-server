@@ -1,24 +1,27 @@
 const mongoose = require("mongoose");
 const Gym = require("../../mongooseSchema/gym");
 const GymType = require("../../mongooseSchema/gymType");
+const GymTag = require("../../mongooseSchema/gymTag");
 const SportObject = require("../../mongooseSchema/sportObject");
+const Equipment = require("../../mongooseSchema/equipment");
+const Review = require("../../mongooseSchema/review");
+const Reservation = require("../../mongooseSchema/reservation")
 
 module.exports = {
   Query: {
     gyms: () =>
       Gym.find({})
-        .populate("gymType")
-        .populate("sportObject")
-        .populate({ path: "gymTags", populate: "gymTag" })
-        .populate({ path: "equipments", populate: "equipment" })
-        .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
+        .populate("sportObject"),
     gymById: (parent, { gymId }) =>
       Gym.findById(gymId)
-        .populate("gymType")
         .populate("sportObject")
-        .populate({ path: "gymTags", populate: "gymTag" })
-        .populate({ path: "equipments", populate: "equipment" })
-        .populate({ path: "reviews", ref: "review", populate: {path: "user", ref: "user"}}),
+  },
+  Gym: {
+    gymType: (parent) => GymType.findOne({gyms: parent._id}),
+    gymTags: (parent) => GymTag.find({gyms: parent._id}),
+    equipments: (parent) => Equipment.find({gyms: parent._id}),
+    reviews: (parent) => Review.find({gym: parent._id}),
+    reservations: (parent) => Reservation.find({gym: parent._id})
   },
   Mutation: {
     addGym: async (parent, gym) => {
@@ -41,6 +44,7 @@ module.exports = {
         availability: gym.availability,
         gymTags: [],
         equipments: [],
+        reservations: []
       });
       await SportObject.updateOne({ $push: { gyms: newGym._id } });
       return newGym.save();

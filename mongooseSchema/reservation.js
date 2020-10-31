@@ -1,6 +1,8 @@
 const { Schema, model, ObjectId } = require("mongoose");
 
 const reservationSchema = Schema({
+  _id: ObjectId,
+  title: String,
   startDateTime: Date,
   endDateTime: Date,
   createdAt: {

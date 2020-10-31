@@ -9,6 +9,8 @@ const addressSchema = new Schema({
   zipCode: String,
   country: { type: ObjectId, ref: "country" },
   geoPoint: [Number],
+  sportObject: { type: ObjectId, ref: "sportObject" },
+  company: { type: ObjectId, ref: "company" },
 });
 
 module.exports = model("address", addressSchema);

@@ -26,3 +26,7 @@ type Query {
   sportObjectByGymType(gymType: String): [SportObject]
   sportObjectById(sportObjectId: String): SportObject
 }
+
+type SportObject {
+  gymById(gymId: ID): Gym
+}

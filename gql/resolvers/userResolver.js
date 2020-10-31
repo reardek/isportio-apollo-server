@@ -3,12 +3,18 @@ const bcrypt = require("bcrypt");
 const fs = require("fs");
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const Review = require("../../mongooseSchema/review");
+const Reservation = require("../../mongooseSchema/reservation");
 
 module.exports = {
   Query: {
     users: () => User.find({}),
     userById: (parent, args) => User.findById({ _id: args.userId }),
     userByEmail: (parent, {loginEmail}) => User.findOne({"loginEmail": loginEmail})
+  },
+  User: {
+    reviews: (parent) => Review.find({user: parent._id}),
+    reservations: (parent) => Reservation.find({user: parent._id})
   },
   Mutation: {
     addUser: async (parent, user) => {
@@ -20,7 +26,8 @@ module.exports = {
         lastName: user.lastName,
         role: user.role,
         birthDate: user.birthDate,
-        reviews: []
+        reviews: [],
+        reservations: []
       });
       return newUser.save();
     },
