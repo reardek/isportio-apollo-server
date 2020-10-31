@@ -15,7 +15,8 @@ const gymSchema = Schema({
   maxAvailability: Number,
   gymTags: [{type: ObjectId, ref: "gymTag"}],
   equipments: [{type: ObjectId, ref: "equipment"}],
-  reviews: [{type: ObjectId, ref: "review"}]
+  reviews: [{type: ObjectId, ref: "review"}],
+  reservations: [{type: ObjectId, ref: "reservation"}]
 });
 
 module.exports = model("gym", gymSchema);

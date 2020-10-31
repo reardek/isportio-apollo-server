@@ -8,15 +8,17 @@ type User {
   role: Role
   registeredDate: Date
   reviews: [Review]
+  reservations: [Reservation]
 }
 
 type Reservation {
   _id: ID
+  title: String
   startDateTime: Date
   endDateTime: Date
   createdAt: Date
-  userId: ID
-  gymId: ID
+  user: User
+  gym: Gym
 }
 
 type Gym {
@@ -34,6 +36,7 @@ type Gym {
   gymTags: [GymTag]
   equipments: [Equipment]
   reviews: [Review]
+  reservations: [Reservation]
 }
 
 type GymType {

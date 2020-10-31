@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Reservation = require("../../mongooseSchema/reservation");
 
 module.exports = {
@@ -9,10 +10,12 @@ module.exports = {
   Mutation: {
     addReservation: (parent, reservation) => {
       const newReservation = new Reservation({
+        _id: new mongoose.Types.ObjectId(),
+        title: reservation.title,
         startDateTime: reservation.startDateTime,
         endDateTime: reservation.endDateTime,
-        userId: reservation.userId,
-        gymId: reservation.gymId,
+        user: reservation.user,
+        gym: reservation.gym,
       });
       return newReservation.save();
     },
