@@ -6,11 +6,10 @@ const Gym = require("../../mongooseSchema/gym");
 module.exports = {
   Query: {
     reservations: () => Reservation.find({}),
-    userReservations: (parent, args) =>
-      Reservation.find({ userId: args.userId }),
+    userReservations: (parent, args) => Reservation.find({ user: args.user }),
   },
   Reservation: {
-    user: (parent) => User.findOne({reservations: parent._id }),
+    user: (parent) => User.findOne({ reservations: parent._id }),
     gym: (parent) => Gym.findOne({ reservations: parent._id }),
   },
   Mutation: {
@@ -32,6 +31,42 @@ module.exports = {
         { $push: { reservations: newReservation._id } }
       );
       return newReservation.save();
+    },
+    delReservationById: async (parent, { reservation }) => {
+      const reservationToDel = await Reservation.findById(reservation);
+      await Reservation.deleteOne({ _id: reservation });
+      await User.updateOne(
+        { reservations: reservation },
+        { $pull: { reservations: reservation } }
+      );
+      await Gym.updateOne(
+        { reservations: reservation },
+        { $pull: { reservations: reservation } }
+      );
+      return reservationToDel;
+    },
+    updateReservationById: async (
+      parent,
+      { reservation, title, startDateTime, endDateTime, gym }
+    ) => {
+      await Gym.updateOne(
+        { reservations: reservation },
+        { $pull: { reservations: reservation } }
+      );
+      await Gym.updateOne(
+        { _id: gym },
+        { $push: { reservations: reservation } }
+      );
+      await Reservation.updateOne(
+        { _id: reservation },
+        {
+          title,
+          startDateTime,
+          endDateTime,
+          gym,
+        }
+      );
+      return Reservation.findById(reservation);
     },
   },
 };

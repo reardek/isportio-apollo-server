@@ -16,6 +16,16 @@ type Mutation {
     gym: ID!
   ): Reservation
 
+  delReservationById(reservation: ID): Reservation
+
+  updateReservationById(
+    reservation: ID!
+    title: String!
+    startDateTime: Date!
+    endDateTime: Date!
+    gym: ID!
+  ): Reservation
+
   addAddress(
     streetName: String
     buildingNumber: String
@@ -42,7 +52,7 @@ type Mutation {
 
   addGymType(name: String, namePL: String): GymType
 
-  addGymTag(name: String! namePL: String): GymTag
+  addGymTag(name: String!, namePL: String): GymTag
 
   addGymTagToGym(sportObject: String, gym: String, gymTag: String): Gym
 
