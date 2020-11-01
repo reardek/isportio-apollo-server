@@ -5,6 +5,7 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 const Review = require("../../mongooseSchema/review");
 const Reservation = require("../../mongooseSchema/reservation");
+const mongoose = require("mongoose");
 
 module.exports = {
   Query: {
@@ -20,6 +21,7 @@ module.exports = {
     addUser: async (parent, user) => {
       const pass = await bcrypt.hash(user.password, 10);
       const newUser = new User({
+        _id: new mongoose.Types.ObjectId(),
         loginEmail: user.loginEmail,
         password: pass,
         firstName: user.firstName,

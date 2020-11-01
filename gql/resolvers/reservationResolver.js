@@ -28,7 +28,7 @@ module.exports = {
       );
       await Gym.updateOne(
         { _id: newReservation.gym },
-        { $push: { reservations: newReservation._id } }
+        { $push: { reservations: newReservation._id }, $inc: {availability: - 1} }
       );
       return newReservation.save();
     },
@@ -41,7 +41,7 @@ module.exports = {
       );
       await Gym.updateOne(
         { reservations: reservation },
-        { $pull: { reservations: reservation } }
+        { $pull: { reservations: reservation }, $inc: {availability: + 1} }
       );
       return reservationToDel;
     },
@@ -51,11 +51,11 @@ module.exports = {
     ) => {
       await Gym.updateOne(
         { reservations: reservation },
-        { $pull: { reservations: reservation } }
+        { $pull: { reservations: reservation }, $inc: {availability: + 1} }
       );
       await Gym.updateOne(
         { _id: gym },
-        { $push: { reservations: reservation } }
+        { $push: { reservations: reservation }, $inc: {availability: - 1} }
       );
       await Reservation.updateOne(
         { _id: reservation },
