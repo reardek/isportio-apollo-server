@@ -10,6 +10,7 @@ const gymSchema = Schema({
   phoneNumber: String,
   availability: Number,
   price: Number,
+  avgRate: Number,
   mainPhoto: String,
   sidePhotos: [String],
   maxAvailability: Number,

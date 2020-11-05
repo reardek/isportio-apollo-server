@@ -29,6 +29,7 @@ type Gym {
   description: String
   phoneNumber: String
   price: Float
+  avgRate: Float
   mainPhoto: String
   sidePhotos: [String]
   availability: Int

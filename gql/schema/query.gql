@@ -6,6 +6,7 @@ type Query {
   userReservations(user: ID!): [Reservation]
   gyms: [Gym]
   gymById(gymId: ID): Gym
+  gymsFilter(gymType: ID, gymTags: [ID], minPrice: Float, maxPrice: Float, starRate: Float): [Gym]
   equipments: [Equipment]
   trainers: [Trainer]
   specializations: [Specialization]
@@ -29,4 +30,6 @@ type Query {
 
 type SportObject {
   gymById(gymId: ID): Gym
+  gymsFilter(gymType: ID, gymTags: [ID], minPrice: Float, maxPrice: Float, starRate: Float): [Gym]
 }
+

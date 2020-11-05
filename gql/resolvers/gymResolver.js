@@ -38,6 +38,7 @@ module.exports = {
         description: gym.description,
         phoneNumber: gym.phoneNumber,
         price: gym.price,
+        avgRate: 0,
         mainPhoto: gym.mainPhoto,
         sidePhotos: gym.sidePhotos,
         maxAvailability: gym.availability,

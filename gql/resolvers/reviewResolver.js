@@ -38,6 +38,8 @@ module.exports = {
       await Gym.findByIdAndUpdate(newReview.gym, {
         $push: { reviews: newReview._id },
       });
+      const avgRate = await Review.aggregate([{$match: {gym: newReview.gym}}, {$group: {_id: 1, avgRate: {$avg: "$starRate"}}}]);
+      await Gym.findByIdAndUpdate(newReview.gym, {$set: {"avgRate": avgRate[0].avgRate}})
       return newReview;
     },
   },

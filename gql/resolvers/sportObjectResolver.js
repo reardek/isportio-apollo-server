@@ -23,6 +23,26 @@ module.exports = {
       SportObjectOwner.findOne({ sportObject: parent._id }),
     address: (parent) => Address.findOne({ sportObject: parent._id }),
     gyms: (parent) => Gym.find({ sportObject: parent._id }),
+    gymsFilter: (
+      parent,
+      { gymType, gymTags, minPrice, maxPrice, starRate }
+    ) => {
+      let query = [];
+      if (gymType != undefined) query.push({ gymType: gymType });
+      if (gymTags != undefined) query.push({ gymTags: { $in: gymTags } });
+      if (minPrice != undefined && maxPrice != undefined)
+        query.push({
+          $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }],
+        });
+      if (starRate != undefined)
+        query.push({
+          $and: [
+            { avgRate: { $gte: starRate - 0.5 } },
+            { avgRate: { $lte: starRate + 0.5 } },
+          ],
+        });
+      return Gym.find({ $and: query });
+    },
     gymById: (parent, { gymId }) => Gym.findById(gymId),
   },
   Mutation: {
