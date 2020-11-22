@@ -41,7 +41,7 @@ module.exports = {
             { avgRate: { $lte: starRate + 0.5 } },
           ],
         });
-      return Gym.find({ $and: query });
+      return Gym.find({ $and: [...query, {sportObject: parent}] });
     },
     gymById: (parent, { gymId }) => Gym.findById(gymId),
   },
