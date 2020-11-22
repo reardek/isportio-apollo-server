@@ -20,9 +20,9 @@ type Mutation {
 
   updateReservationById(
     reservation: ID!
-    title: String!
-    startDateTime: Date!
-    endDateTime: Date!
+    title: String
+    startDateTime: Date
+    endDateTime: Date
     gym: ID!
   ): Reservation
 
