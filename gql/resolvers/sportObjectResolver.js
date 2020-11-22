@@ -28,13 +28,13 @@ module.exports = {
       { gymType, gymTags, minPrice, maxPrice, starRate }
     ) => {
       let query = [];
-      if (gymType !== undefined) query.push({ gymType: gymType });
-      if (gymTags !== undefined) query.push({ gymTags: { $in: gymTags } });
-      if (minPrice !== undefined && maxPrice !== undefined)
+      if (gymType != undefined) query.push({ gymType: gymType });
+      if (gymTags != undefined) query.push({ gymTags: { $in: gymTags } });
+      if (minPrice != undefined && maxPrice != undefined)
         query.push({
           $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }],
         });
-      if (starRate !== undefined)
+      if (starRate != undefined)
         query.push({
           $and: [
             { avgRate: { $gte: starRate - 0.5 } },
