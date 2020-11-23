@@ -48,8 +48,6 @@ type Mutation {
     availability: Int
   ): Gym
 
-  addGymToSportObject(sportObjectId: ID, gym: GymInput): SportObject
-
   addGymType(name: String, namePL: String): GymType
 
   addGymTag(name: String!, namePL: String): GymTag

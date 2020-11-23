@@ -84,15 +84,5 @@ module.exports = {
         .populate({ path: "sportObjectOwner" })
         .execPopulate();
     },
-    addGymToSportObject: (parent, { sportObjectId, gym }) => {
-      const uSportObject = SportObject.findByIdAndUpdate(
-        sportObjectId,
-        { $push: { gyms: gym } },
-        (err, res) => {
-          res.save();
-        }
-      );
-      return uSportObject;
-    },
   },
 };

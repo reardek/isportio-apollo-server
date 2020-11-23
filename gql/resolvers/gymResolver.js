@@ -25,15 +25,10 @@ module.exports = {
   },
   Mutation: {
     addGym: async (parent, gym) => {
-      const gymTypeId = await GymType.findOne({ namePL: gym.gymType }, "_id");
-      const sportObjectId = await SportObject.findOne(
-        { name: gym.sportObject },
-        "_id"
-      );
       const newGym = new Gym({
         _id: new mongoose.Types.ObjectId(),
-        sportObject: sportObjectId,
-        gymType: gymTypeId,
+        sportObject: gym.sportObject,
+        gymType: gym.gymType,
         name: gym.name,
         description: gym.description,
         phoneNumber: gym.phoneNumber,
@@ -48,6 +43,7 @@ module.exports = {
         reservations: []
       });
       await SportObject.updateOne({ $push: { gyms: newGym._id } });
+      await GymType.updateOne({$push: {gyms: newGym._id}})
       return newGym.save();
     },
   },
