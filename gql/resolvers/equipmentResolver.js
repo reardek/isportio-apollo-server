@@ -19,6 +19,11 @@ module.exports = {
       const equipmentId = await Equipment.findOne({namePL: equipment}, "_id");
       const updateEquipment = await Gym.findOneAndUpdate({sportObject: sportObjectId, name: gym}, {$push: {equipments: equipmentId}});
       return updateEquipment;
+    },
+    addEquipmentToGymById: async (parent, {equipment, gym}) => {
+      const updateGym = await Gym.updateOne({_id: gym}, {$push: {equipments: equipment}})
+      await Equipment.updateOne({_id: equipment}, {$push: {gyms: gym}})
+      return await Gym.findById(gym)
     }
   }
 };

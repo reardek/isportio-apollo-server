@@ -81,6 +81,8 @@ type Mutation {
 
   addEquipmentToGym(sportObject: String, gym: String, equipment: String): Gym
 
+  addEquipmentToGymById(equipment: ID , gym: ID): Gym
+
   loginUser(loginEmail: String, password: String): String
 
   verifyUser(token: String): JsonToken
