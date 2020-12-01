@@ -10,7 +10,6 @@ const addressSchema = new Schema({
   country: { type: ObjectId, ref: "country" },
   geoPoint: [Number],
   sportObject: { type: ObjectId, ref: "sportObject" },
-  gym: [{type: ObjectId, ref: "gym"}],
   company: { type: ObjectId, ref: "company" },
 });
 

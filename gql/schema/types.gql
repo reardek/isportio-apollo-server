@@ -34,7 +34,6 @@ type Gym {
   sidePhotos: [String]
   availability: Int
   maxAvailability: Int
-  address: Address
   gymTags: [GymTag]
   equipments: [Equipment]
   reviews: [Review]
