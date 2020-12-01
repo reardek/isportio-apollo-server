@@ -8,7 +8,8 @@ module.exports = {
       const newGymType = new GymType({
         _id: new mongoose.Types.ObjectId(),
         name: gymType.name,
-        namePL: gymType.namePL
+        namePL: gymType.namePL,
+        gyms: []
       });
       return newGymType.save();
     },
