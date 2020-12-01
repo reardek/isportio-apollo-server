@@ -8,24 +8,24 @@ const Gym = require("../../mongooseSchema/gym");
 module.exports = {
   Query: {
     sportObjects: async () => await SportObject.find({}),
-    sportObjectByCityAndAvailability: async (parent, { city, availability }) =>
-      SportObject.find({
-        $and: [
-          { "address.city": city },
-          { "gyms.availability": { $gte: availability } },
-        ],
-      }),
+      
+    sportObjectsByCity: async (parent, { city }) => {
+      console.log(city);
+      let sport = await SportObject.find({ "address.city": city });
+      console.log(sport)
+      return sport;
+    },
     sportObjectById: async (parent, { sportObjectId }) =>
       SportObject.findById(sportObjectId),
   },
   SportObject: {
     sportObjectOwner: (parent) =>
       SportObjectOwner.findOne({ sportObject: parent._id }),
-    address: (parent) => Address.findOne({ sportObject: parent._id }),
+
     gyms: (parent) => Gym.find({ sportObject: parent._id }),
     gymsFilter: (
       parent,
-      { gymType, gymTags, minPrice, maxPrice, starRate }
+      { gymType, gymTags, minPrice, maxPrice, starRate, availability }
     ) => {
       let query = [];
       if (gymType != undefined) query.push({ gymType: gymType });
@@ -41,7 +41,8 @@ module.exports = {
             { avgRate: { $lte: starRate + 0.5 } },
           ],
         });
-      return Gym.find({ $and: [...query, {sportObject: parent}] });
+      if (availability != undefined) query.push({ availability: {$gte: availability} })
+      return Gym.find({ $and: [...query, { sportObject: parent._id }] });
     },
     gymById: (parent, { gymId }) => Gym.findById(gymId),
   },
@@ -58,23 +59,18 @@ module.exports = {
         { firstName, lastName },
         "_id"
       );
-      const sportObjectAddress = new Address({
-        _id: new mongoose.Types.ObjectId(),
-        streetName: sportObject.address.streetName,
-        buildingNumber: sportObject.address.buildingNumber,
-        flatNumber: sportObject.address.flatNumber,
-        city: sportObject.address.city,
-        zipCode: sportObject.address.zipCode,
-        country: countryID,
-        geoPoint: sportObject.address.geoPoint,
-      });
-      sportObjectAddress.save((err) => {
-        if (err) return err;
-      });
       const newSportObject = new SportObject({
         _id: new mongoose.Types.ObjectId(),
         name: sportObject.name,
-        address: sportObjectAddress._id,
+        address: {
+          streetName: sportObject.address.streetName,
+          buildingNumber: sportObject.address.buildingNumber,
+          flatNumber: sportObject.address.flatNumber,
+          city: sportObject.address.city,
+          zipCode: sportObject.address.zipCode,
+          country: countryID,
+          geoPoint: sportObject.address.geoPoint,
+        },
         sportObjectOwner: sportObjectOwner,
         gyms: [],
         reviews: [],

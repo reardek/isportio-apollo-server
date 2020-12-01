@@ -6,7 +6,13 @@ type Query {
   userReservations(user: ID!): [Reservation]
   gyms: [Gym]
   gymById(gymId: ID): Gym
-  gymsFilter(gymType: ID, gymTags: [ID], minPrice: Float, maxPrice: Float, starRate: Float): [Gym]
+  gymsFilter(
+    gymType: ID
+    gymTags: [ID]
+    minPrice: Float
+    maxPrice: Float
+    starRate: Float
+  ): [Gym]
   equipments: [Equipment]
   trainers: [Trainer]
   specializations: [Specialization]
@@ -20,16 +26,19 @@ type Query {
   cities(filter: String, skip: Int, first: Int): [Cities]
   gymTypes: [GymType]
   gymTags: [GymTag]
-  sportObjectByCityAndAvailability(
-    city: String
-    availability: Int
-  ): [SportObject]
+  sportObjectsByCity(city: String): [SportObject]
   sportObjectByGymType(gymType: String): [SportObject]
   sportObjectById(sportObjectId: String): SportObject
 }
 
 type SportObject {
   gymById(gymId: ID): Gym
-  gymsFilter(gymType: ID, gymTags: [ID], minPrice: Float, maxPrice: Float, starRate: Float): [Gym]
+  gymsFilter(
+    gymType: ID
+    gymTags: [ID]
+    minPrice: Float
+    maxPrice: Float
+    starRate: Float
+    availability: Int
+  ): [Gym]
 }
-

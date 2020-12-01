@@ -13,4 +13,4 @@ const addressSchema = new Schema({
   company: { type: ObjectId, ref: "company" },
 });
 
-module.exports = model("address", addressSchema);
+module.exports = addressSchema;
