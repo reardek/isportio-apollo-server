@@ -23,9 +23,9 @@ module.exports = {
       SportObjectOwner.findOne({ sportObject: parent._id }),
 
     gyms: (parent) => Gym.find({ sportObject: parent._id }),
-    gymsFilter: (
+    gymsFilter: async (
       parent,
-      { gymType, gymTags, minPrice, maxPrice, starRate, availability }
+      { gymType, gymTags, minPrice, maxPrice, starRate, first, skip }
     ) => {
       let query = [];
       if (gymType != undefined) query.push({ gymType: gymType });
@@ -42,7 +42,10 @@ module.exports = {
           ],
         });
       if (availability != undefined) query.push({ availability: {$gte: availability} })
-      return Gym.find({ $and: [...query, { sportObject: parent._id }] });
+      let cursor = Gym.find({ $and: [...query, { sportObject: parent._id }] });
+      if (first) cursor.limit(first);
+      if (skip) cursor.skip(skip);
+      return await cursor
     },
     gymById: (parent, { gymId }) => Gym.findById(gymId),
   },
