@@ -25,23 +25,23 @@ module.exports = {
     gyms: (parent) => Gym.find({ sportObject: parent._id }),
     gymsFilter: async (
       parent,
-      { gymType, gymTags, minPrice, maxPrice, starRate, first, skip }
+      { gymType, gymTags, minPrice, maxPrice, starRate, availability, first, skip }
     ) => {
       let query = [];
-      if (gymType != undefined) query.push({ gymType: gymType });
-      if (gymTags != undefined) query.push({ gymTags: { $in: gymTags } });
-      if (minPrice != undefined && maxPrice != undefined)
+      if (gymType) query.push({ gymType: gymType });
+      if (gymTags) query.push({ gymTags: { $in: gymTags } });
+      if (minPrice && maxPrice)
         query.push({
           $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }],
         });
-      if (starRate != undefined)
+      if (starRate)
         query.push({
           $and: [
             { avgRate: { $gte: starRate - 0.5 } },
             { avgRate: { $lte: starRate + 0.5 } },
           ],
         });
-      if (availability != undefined) query.push({ availability: {$gte: availability} })
+      if (availability) query.push({ availability: {$gte: availability} })
       let cursor = Gym.find({ $and: [...query, { sportObject: parent._id }] });
       if (first) cursor.limit(first);
       if (skip) cursor.skip(skip);
