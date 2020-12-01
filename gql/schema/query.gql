@@ -33,7 +33,7 @@ type SportObject {
     maxPrice: Float
     starRate: Float
     availability: Int
-    firts: Int
+    first: Int
     skip: Int
   ): [Gym]
 }
