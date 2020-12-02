@@ -8,12 +8,10 @@ const Gym = require("../../mongooseSchema/gym");
 module.exports = {
   Query: {
     sportObjects: async () => await SportObject.find({}),
-      
+
     sportObjectsByCity: async (parent, { city }) => {
-      console.log(city);
-      let sport = await SportObject.find({ "address.city": city });
-      console.log(sport)
-      return sport;
+      if (city === "") return await SportObject.find({});
+      return await SportObject.find({ "address.city": city });
     },
     sportObjectById: async (parent, { sportObjectId }) =>
       SportObject.findById(sportObjectId),
@@ -25,7 +23,16 @@ module.exports = {
     gyms: (parent) => Gym.find({ sportObject: parent._id }),
     gymsFilter: async (
       parent,
-      { gymType, gymTags, minPrice, maxPrice, starRate, availability, first, skip }
+      {
+        gymType,
+        gymTags,
+        minPrice,
+        maxPrice,
+        starRate,
+        availability,
+        first,
+        skip,
+      }
     ) => {
       let query = [];
       if (gymType) query.push({ gymType: gymType });
@@ -41,11 +48,11 @@ module.exports = {
             { avgRate: { $lte: starRate + 0.5 } },
           ],
         });
-      if (availability) query.push({ availability: {$gte: availability} })
+      if (availability) query.push({ availability: { $gte: availability } });
       let cursor = Gym.find({ $and: [...query, { sportObject: parent._id }] });
       if (first) cursor.limit(first);
       if (skip) cursor.skip(skip);
-      return await cursor
+      return await cursor;
     },
     gymById: (parent, { gymId }) => Gym.findById(gymId),
   },
