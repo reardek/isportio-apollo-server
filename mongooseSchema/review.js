@@ -8,7 +8,7 @@ const reviewSchema = new Schema({
   gym: {type: ObjectId, ref: "gym"},
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 
